@@ -1,0 +1,141 @@
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection" />
+    <link rel="stylesheet" href="css/main.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <!--    navbar -->
+    <nav class="indigo">
+        <div class="nav-wrapper">
+            <a href="index.html" class="brand-logo">eAllot</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn orange">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--       side menu -->
+    <div class="row">
+        <div class="col l2 side-navbar">
+            <ul class="user-panel center">
+                <li>
+                    <img class="circle" src="https://www.picsum.photos/200">
+                    <h6 class="white-text name">Welcome User</h6>
+                </li>
+                <li>
+                    <div class="divider"></div>
+                </li>
+            </ul>
+
+            <ul class="menu-panel center">
+                <li>
+                    <div class="nav"><a href="project.html" class="black-text">Project</a></div>
+                </li>
+                <li><a href="statement.html" class="black-text">Statement </a></li>
+                <li><a href="customer.html" class="black-text">Customer</a></li>                
+                <li><a href="#!" class="black-text">Allotment </a></li>
+            </ul>
+
+        </div>
+
+        <!--        main content panel -->
+
+        <div class="col l10 main-content">
+
+            <div class="header center">
+              
+                <h5 class="white-text" >Last Month total slots generation</h5>
+               
+            </div>
+
+            <div class="show-case">
+
+                <div class="col l2 card-holder orange z-depth-3 center">
+                    <h3>C1</h3>
+                    <p>782900</p>
+                </div>
+                <div class="col l2 card-holder pink z-depth-3 center">
+                    <h3>C2</h3>
+                    <p>838030</p>
+                </div>
+                <div class="col l2 card-holder white z-depth-3 center">
+                    <h3>C3</h3>
+                    <p>861800</p>
+                </div>
+                <div class="col l2 card-holder teal z-depth-3 center">
+                    <h3>C4</h3>
+                    <p>784794</p>
+                </div>
+                <div class="col l2 card-holder green z-depth-3 center">
+                    <h3>C5</h3>
+                    <p>882993</p>
+                </div>
+
+            </div>
+
+            <!--               Generation vs. Allotment graph-->
+
+            <div class="row" style="padding-top: 180px">
+
+                <div class="col l6">
+
+                    <div class="card blue lighten-5">
+                        <canvas id="allot-graph">
+                            <p>Allotment graph</p>
+                        </canvas>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col l6">
+
+                    <div class="card blue lighten-5">
+                        <canvas id="demand-graph">
+                            <p>Demand graph</p>
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <footer class="page-footer indigo">
+        <div class="footer-copyright">
+            <div class="container ">
+                © 2019 Copyrights to Shreyasree Technical Services
+                
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <!--jquery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type=text/javascript src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script type="text/javascript" src="js/charts.js"></script>
+
+
+
+</body></html>

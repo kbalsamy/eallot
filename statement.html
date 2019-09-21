@@ -1,0 +1,246 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ </head>
+
+ <body>
+
+     <nav class="indigo">
+         <div class="nav-wrapper">
+             <a href="index.html" class="brand-logo">eAllot</a>
+             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a class="waves-effect waves-light btn orange">Logout</a></li>
+             </ul>
+         </div>
+     </nav>
+
+     <!--       side menu -->
+     <div class="row">
+         <div class="col l2 side-navbar">
+             <ul class="user-panel center">
+                 <li>
+                     <img class="circle" src="https://www.picsum.photos/200">
+                     <h6 class="white-text name">Welcome User</h6>
+                 </li>
+                 <li>
+                     <div class="divider"></div>
+                 </li>
+             </ul>
+
+             <ul class="menu-panel center">
+                 <li>
+                     <a href="project.html" class="black-text">Project</a>
+                 </li>
+                 <li><a href="statement.html" class="active-page">Statement </a></li>
+                 <li><a href="customer.html" class="black-text">Customer</a></li>
+
+                 <li><a href="#!" class="black-text">Allotment </a></li>
+             </ul>
+
+         </div>
+
+         <!--        main content panel -->
+
+         <div class="col l10 main-content">
+
+             <div class="header-project center">
+                 <h5 class="white-text">Generation Statement Download</h5>
+             </div>
+
+             <div class="row">
+                 <div class="col s12">
+                     <ul class="tabs tabs-fixed-width z-depth-1">
+                         <li class="tab col s3"><a class="active" href="#bulk-download">Bulk Download</a></li>
+                         <li class="tab col s3"><a href="#customized-download">Single Download</a></li>
+                         <li class="tab col s3"><a href="#results">Results</a></li>
+
+                     </ul>
+                 </div>
+
+
+                 <!--                tab for bulk download-->
+                 <div id="bulk-download" class="col s12 bulk">
+                    
+                     <div class="card orange lighten-4">
+
+                         <form action="#" class="query-tools">
+                             <div class="input-field">
+                                 <select name="" id="service-group">
+                                     <option value="" selected disabled>Select Service group</option>
+                                     <option value="EUPL">EUPL</option>
+                                     <option value="NWFL">NWFL</option>
+                                     <option value="OTHER">OTHER</option>
+                                 </select>
+                             </div>
+
+                             <div class="input-field">
+                                 <select name="" id="month">
+                                     <option value="" selected disabled>Select Month</option>
+                                     <option value="january">January</option>
+                                     <option value="February">February</option>
+                                     <option value="March">March</option>
+                                     <option value="April">April</option>
+                                     <option value="May">May</option>
+                                     <option value="June">June</option>
+                                     <option value="July">July</option>
+                                     <option value="August">August</option>
+                                     <option value="September">September</option>
+                                     <option value="October">October</option>
+                                     <option value="November">November</option>
+                                     <option value="December">December</option>
+                                 </select>
+                             </div>
+
+                             <div class="input-field">
+                                 <select name="" id="year">
+                                     <option value="" selected disabled>Select year</option>
+                                     <option value="2019">2019</option>
+                                 </select>
+                             </div>
+
+                             <div class="input-field">
+                                 <button class="waves-effect btn" type="submit">Download</button>
+                             </div>
+
+                         </form>
+
+                     </div>               
+                     
+                    
+                 </div>
+
+                 <!--                tab for customized download -->
+                 <div id="customized-download" class="col s12 single">
+
+                     <div class="card orange lighten-4">
+                         <form action="#" class="query-tools ">
+
+                             <div class="input-field">
+                                 <input type="text" id='serviceNumber'>
+                                 <label for="#serviceNumber">Service Number</label>
+                             </div>
+
+                             <div class="input-field">
+                                 <select name="" id="month">
+                                     <option value="" selected disabled>Select Month</option>
+                                     <option value="january">January</option>
+                                     <option value="February">February</option>
+                                     <option value="March">March</option>
+                                     <option value="April">April</option>
+                                     <option value="May">May</option>
+                                     <option value="June">June</option>
+                                     <option value="July">July</option>
+                                     <option value="August">August</option>
+                                     <option value="September">September</option>
+                                     <option value="October">October</option>
+                                     <option value="November">November</option>
+                                     <option value="December">December</option>
+                                 </select>
+                             </div>
+
+                             <div class="input-field">
+                                 <select name="" id="year">
+                                     <option value="" selected disabled>Select year</option>
+                                     <option value="2019">2019</option>
+                                 </select>
+                             </div>
+
+                             <div class="input-field">
+                                 <button class="waves-effect btn" type="submit">Download</button>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+             
+             <div class="col s12" id="results">
+                     
+                     <div class="card" style="margin:10px">
+                         <table id="summary-table" style="font-size: 12px;">
+                             <thead>
+                                 <tr>
+                                     <th rowspan="2">#</th>
+                                     <th rowspan="2">Service Number</th>
+                                     <th colspan="5">Net Units</th>
+                                     <th colspan="5">Banking Units</th>
+                                     <th colspan="7">Charges</th>
+                                 </tr>
+                                 <tr>
+                                     <th>C1</th>
+                                     <th>C2</th>
+                                     <th>C3</th>
+                                     <th>C4</th>
+                                     <th>C5</th>
+                                     <th>C1</th>
+                                     <th>C2</th>
+                                     <th>C3</th>
+                                     <th>C4</th>
+                                     <th>C5</th>
+                                     <th>C2</th>
+                                     <th>C3</th>
+                                     <th>C4</th>
+                                     <th>C5</th>
+                                     <th>C6</th>
+                                     <th>C7</th>
+                                     <th>C1</th>
+                                 </tr>
+                             </thead>
+                             <tbody></tbody>
+                             <tfoot></tfoot>
+                         </table>
+                     </div>
+
+             
+              
+
+             <!--             main-content ends here    -->
+         </div>
+
+         <!--    main continer ends here-->
+     </div>
+
+
+     <!--jquery script-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <!--JavaScript at end of body for optimized loading-->
+     <!--    <script type="text/javascript" src="js/materialize.js"></script>-->
+     <script type=text/javascript src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+     <script type="text/javascript" src="js/charts.js"></script>
+
+     <script>
+         $(document).ready(function() {
+
+
+             $('select').material_select();
+             $('.modal').modal();
+             $('.tabs').tabs({
+                 swipeable: true
+             });
+             $('#summary-table').DataTable();
+             $(".tabs-content").css({'height':'100vh'})
+             $(".dataTables_info").css("font-size", "12px");
+             $(".dataTables_paginate").css("font-size", "12px");
+             $('.dataTables_filter input[type="search"]').css({
+                 'width': '250px'
+             });
+
+
+         });
+
+     </script>
+
+ </body>
+
+ </html>

@@ -1,0 +1,41 @@
+ <table class="bordered highlight">
+                     <thead>
+                         <tr>
+                             <th rowspan="2" class="center">Service Number</th>
+                             <th colspan="5" class="center">Net Units</th> 
+                              <th colspan="5" class="center">Banking</th>                   
+                             
+                         </tr>
+                         <tr>
+                            <th>C1</th>
+                            <th>C2</th>
+                            <th>C3</th>
+                            <th>C4</th>
+                            <th>C5</th>
+                            <th>C1</th>
+                            <th>C2</th>
+                            <th>C3</th>
+                            <th>C4</th>
+                             <th>C5</th>
+                             
+                         </tr>
+                     </thead>
+                     
+                         <tr>
+                             <td>07789288299</td>
+                             <td>76722</td>
+                             <td>8282</td>
+                             <td>299</td>
+                             <td>099</td>
+                             <td>0299</td>
+                             <td>722</td>
+                             <td>882</td>
+                             <td>29</td>
+                             <td>729</td>
+                             <td>729</td>
+                         </tr>
+
+                     <tbody>
+                         
+                     </tbody>
+                 </table>

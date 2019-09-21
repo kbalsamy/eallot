@@ -1,0 +1,298 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <link rel="stylesheet" href="css/main.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ </head>
+
+ <body>
+
+     <nav class="indigo">
+         <div class="nav-wrapper">
+             <a href="index.html" class="brand-logo">eAllot</a>
+             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a class="waves-effect waves-light btn orange">Logout</a></li>
+             </ul>
+         </div>
+     </nav>
+
+     <!--       side menu -->
+     <div class="row">
+         <div class="col l2 side-navbar">
+             <ul class="user-panel center">
+                 <li>
+                     <img class="circle" src="https://www.picsum.photos/200">
+                     <h6 class="white-text name">Welcome User</h6>
+                 </li>
+                 <li>
+                     <div class="divider"></div>
+                 </li>
+             </ul>
+
+             <ul class="menu-panel center">
+                 <li>
+                     <a href="project.html" class="black-text">Project</a>
+                 </li>
+                 <li><a href="statement.html" class="active-page">Statement </a></li>
+                 <li><a href="customer.html" class="black-text">Customer</a></li>
+
+                 <li><a href="#!" class="black-text">Allotment </a></li>
+             </ul>
+
+         </div>
+
+         <!--        main content panel -->
+
+         <div class="col l10 main-content">
+
+             <div class="header-project center">
+                 <h5 class="white-text">Customer management Portal</h5>
+             </div>
+
+             <!-- Main tabs for managing customer -->
+
+             <div class="row">
+                 <div class="col s12">
+                     <ul class="tabs cus-tabs">
+                         <li class="tab col s3"><a class="active" href="#cus-manage">
+                                 <i class="small material-icons">account_box</i>Manage</a>
+                         </li>
+                         <li class="tab col s3 disabled"><a href="#cus-card">
+                                 <i class="small material-icons">contacts</i>
+                                 Profile</a></li>
+                         <li class="tab col s3 disabled"><a href="#test3">
+                                 <i class="small material-icons">library_books</i>
+                                 Billing</a></li>
+                         <li class="tab col s3 disabled"><a href="#test4">
+                                 <i class="small material-icons">track_changes</i>
+                                 Demand</a></li>
+                     </ul>
+                 </div>
+                 <!--                 tabs for managing customer-->
+                 <div id="cus-manage" class="col s12">
+
+                     <div class="card cus-manage-tools">
+                         <button class="waves-effect btn modal-trigger" href="#add-customer">Add</button>
+                         <button class="waves-effect btn modal-trigger" href="#del-customer">Delete</button>
+                     </div>
+
+                     <!--                        modal for add-->
+                     <div id="add-customer" class="modal">
+                         <div class="modal-content">
+                             <form action="">
+                                 <div class="input-field">
+                                     <input type="text" id="customer-name" name="customerName">
+                                     <label for="customer-name">Name of the customer</label>
+                                 </div>
+                                 <div class="row">
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-ht" name="customerHT">
+                                         <label for="customer-ht">HT number</label>
+                                     </div>
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-wc" name="customerWC">
+                                         <label for="customer-wc">Wheeling Circle</label>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-dv" name="customerDV">
+                                         <label for="customer-dv">Drawl Voltage</label>
+                                     </div>
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-td" name="customerTD">
+                                         <label for="customer-td">T&amp;D Loss </label>
+                                     </div>
+                                 </div>
+                                 <div class="row">
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-email" name="customerEMAIL">
+                                         <label for="customer-email">Email ID</label>
+                                     </div>
+                                     <div class="input-field col s6">
+                                         <input type="text" id="customer-mobile" name="customerMB">
+                                         <label for="customer-mobile">Mobile Number </label>
+                                     </div>
+                                 </div>
+
+                                 <div class="input-field">
+                                     <input type="text" id="customer-address" name="customerADD">
+                                     <label for="customer-address">Address</label>
+                                 </div>
+
+                                 <div class="input-field">
+                                     <input type="text" id="customer-gst" name="customerGST">
+                                     <label for="customer-gst">GST Number</label>
+                                 </div>
+                             </form>
+
+                         </div>
+                         <div class="modal-footer">
+                             <button type="submit" class="modal-close waves-effect btn ">Add </button>
+                         </div>
+
+                     </div>
+                     <!--                     modal for delete-->
+
+                     <div id="del-customer" class="modal">
+                         <div class="modal-content">
+                             <form action="#">
+
+                                 <div class="input-field">
+                                     <input type="hidden" id="del-customer-id" name="del-customerid">
+                                 </div>
+
+
+                                 <div class="input-field">
+                                     <input type="text" id="del-customer-name" name="del-customerName">
+                                     <label for="del-customer-name">Name of the customer</label>
+                                 </div>
+
+                             </form>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="submit" class="modal-close waves-effect btn ">Delete </button>
+                         </div>
+                     </div>
+
+
+                     <!--table -->
+                     <div class="card">
+                         <table class="stripped highlight bordered" style="font-size:12pt">
+                             <thead>
+                                 <tr>
+                                     <th></th>
+                                     <th>customer code</th>
+                                     <th>Name of the company</th>
+                                     <th>HT Number</th>
+                                     <th>Wheeling circle</th>
+                                     <th>drawl voltage</th>
+                                     <th>T&amp;D loss</th>
+                                     <th>Email</th>
+
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td class="valign-wrapper">
+                                         <input type="checkbox" class="filled-in checkbox-pink" id="cus-checkbox" name="cus-checkbox" />
+                                         <label for="cus-checkbox"></label></td>
+                                     <td>001</td>
+                                     <td>Motherson Sumi Systems Ltd</td>
+                                     <td>453</td>
+                                     <td>chengalpattu</td>
+                                     <td>11kv</td>
+                                     <td>6.58%</td>
+                                     <td>motherson@motherson.com</td>
+
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+
+
+                 <!--             profile -->
+                 <div id="cus-card" class="col s12">
+
+                     <div class="card">
+                         <h2>Title here</h2>
+                     </div>
+
+                     <div class="card">
+
+                         <form>
+
+                             <div class="row">
+                                 <div class="col s2">
+                                     <label for="">Name</label>
+                                 </div>
+                                 <div class="input-field col s10">
+                                     <input type="text">
+                                 </div>
+                             </div>
+
+
+                         </form>
+
+                     </div>
+
+
+
+
+                 </div>
+                 <div id="test3" class="col s12">
+                     <h1>Work under progress</h1>
+                 </div>
+                 <div id="test4" class="col s12">Work under progress</div>
+             </div>
+
+
+
+
+
+
+             <!--             main-content ends here    -->
+         </div>
+
+         <!--    main continer ends here-->
+     </div>
+
+
+     <!--jquery script-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <!--JavaScript at end of body for optimized loading-->
+     <!--    <script type="text/javascript" src="js/materialize.js"></script>-->
+     <script type=text/javascript src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+     <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+     <script type="text/javascript" src="js/charts.js"></script>
+
+     <script>
+         $(document).ready(function() {
+
+
+             $('select').material_select();
+             $('.modal').modal();
+             $('.tabs').tabs();
+
+             $("[name='cus-checkbox']").click(getValues);
+
+
+         });
+
+         function getValues() {
+
+             var values = []
+
+             $.each($("input[name='cus-checkbox']:checked").closest("td").siblings("td"),
+                 function() {
+
+                     values.push($(this).text());
+                 });
+
+             $("[name='del-customerName']").each(function() {
+                 $(this).val(values[1])
+             });
+             $("[name='del-customerid']").each(function() {
+                 $(this).val(values[0])
+             });
+
+             Materialize.updateTextFields();
+
+
+         }
+
+     </script>
+
+ </body>
+
+ </html>

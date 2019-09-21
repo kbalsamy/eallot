@@ -1,0 +1,349 @@
+ <!DOCTYPE html>
+ <html>
+
+ <head>
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <!--Import materialize.css-->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+     <link rel="stylesheet" href="css/main.css">
+     <!--Let browser know website is optimized for mobile-->
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ </head>
+
+ <body>
+
+     <nav class="indigo">
+         <div class="nav-wrapper">
+             <a href="index.html" class="brand-logo">eAllot</a>
+             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                 <li><a class="waves-effect waves-light btn orange">Logout</a></li>
+             </ul>
+         </div>
+     </nav>
+
+     <!--       side menu -->
+     <div class="row">
+         <div class="col l2 side-navbar">
+             <ul class="user-panel center">
+                 <li>
+                     <img class="circle" src="https://www.picsum.photos/200">
+                     <h6 class="white-text name">Welcome User</h6>
+                 </li>
+                 <li>
+                     <div class="divider"></div>
+                 </li>
+             </ul>
+
+             <ul class="menu-panel center">
+                 <li>
+                     <a href="project.html" class="active-page">Project</a>
+                 </li>
+                 <li><a href="statement.html" class="black-text">Statement </a></li>
+                 <li><a href="customer.html" class="black-text">Customer</a></li>
+                 
+                 <li><a href="#!" class="black-text">Allotment </a></li>
+             </ul>
+
+         </div>
+
+         <!--        main content panel -->
+
+         <div class="col l10 main-content">
+
+             <div class="header-project center">
+                 <h5 class="white-text">Service Grouping</h5>
+             </div>
+
+             <div class="card search-panel orange lighten-4" style="margin: 10px;">
+
+                 <div class="row" >
+
+                     <div class="col s4" style="margin-top: 15px">
+                         <button data-target="add-sg" class="waves-effect btn modal-trigger">Add Group</button>
+                     </div>
+
+                     <!-- add service group modal -->
+
+                     <div id="add-sg" class="modal">
+                         <form action="#">
+                             <div class="modal-content">
+
+                                 <div class="input-field">
+                                     <input type="text" id="service-name">
+                                     <label for="service-name">Service group Name</label>
+                                 </div>
+                                 <div class="input-field">
+                                     <input type="text" id="remarks">
+                                     <label for="remarks">Remarks</label>
+                                 </div>
+
+                             </div>
+                             <div class="modal-footer">
+                                 <button type="submit" class="waves-effect btn">Add</button>
+                             </div>
+                         </form>
+                     </div>
+
+
+
+                     <form class="col s8">
+
+                         <div class="input-field col s6">
+                             <select>
+                                 <option value="" disabled selected>Select Customer</option>
+                                 <option value="1">NWFL</option>
+                                 <option value="2">EUPL</option>
+                                 <option value="3">OTHER</option>
+                             </select>
+
+                         </div>
+                         <div class="input-field col s6">
+                             <button class="btn waves-effect waves-light" type="submit" name="action">Display
+                             </button>
+                         </div>
+                     </form>
+                 </div>
+             </div>
+             <!--            tools panel    -->
+
+             <div class="tools-panel">
+                 <div class="row">
+                     <div class="col l6 offset-l8">
+                         <button data-target="add-service" class="waves-effect btn modal-trigger" id="add-btn">Add</button>
+                         <button data-target="edit-service" class="waves-effect btn modal-trigger disabled" id="edit-btn">Edit</button>
+                         <button data-target="delete-service" class="waves-effect btn modal-trigger disabled" id="delete-btn">Delete</button>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- modal for add button-->
+
+             <div id="add-service" class="modal">
+                 <form action="#">
+                     <div class="modal-content">
+
+                         <div class="input-field">
+                             <input type="text" id="service Number">
+                             <label for="service-name">Service Number</label>
+                         </div>
+                         <div class="input-field">
+                             <select>
+                                 <option value='' selected disabled>select zone</option>
+                                 <option value='Tirunelveli'>Tirunelveli</option>
+                                 <option value='Udumalaipet'>Udumalaipet</option>
+                             </select>
+                         </div>
+                         <div class="input-field">
+                             <input type="text" id="password">
+                             <label for="password">Enter the Password for this service</label>
+                         </div>
+
+                     </div>
+                     <div class="modal-footer">
+                         <button type="submit" class="waves-effect btn">Add</button>
+                     </div>
+                 </form>
+             </div>
+
+             <!--Edit-tool modal -->
+
+
+             <div id="edit-service" class="modal">
+                 <form action="#">
+                     <div class="modal-content">
+
+                         <div class="input-field">
+                             <input disabled type="text" id="cell-id" name="id">
+                             <label class="active" for="cell-id">Id</label>
+                         </div>
+                         <div class="input-field">
+                             <input type="text" id="cell-serviceNumber" name="serviceNumber">
+                             <label class="active" for="cell-serviceNumber">Service Number</label>
+                         </div>
+
+                         <div class="input-field">
+                             <input type="text" id="cell-zonal" name="zonal">
+                             <label class="active" for="cell-zonal">Zone</label>
+                         </div>
+
+                     </div>
+                     <div class="modal-footer">
+                         <button type="submit" class="waves-effect btn">Update</button>
+                     </div>
+                 </form>
+             </div>
+
+
+             <!--  Delete tool modal -->
+
+             <div id="delete-service" class="modal">
+                 <form action="#">
+                     <div class="modal-content">
+
+                         <div class="input-field">
+                             <input type="text" id="cell-id" name="id" disabled>
+                             <label for="cell-id">Id</label>
+                         </div>
+                         <div class="input-field">
+                             <input type="text" id="cell-serviceNumber" name="serviceNumber" disabled>
+                             <label for="cell-serviceNumber">Service Number</label>
+                         </div>
+
+                         <div class="input-field">
+                             <input type="text" id="cell-zonal" name="zonal" disabled>
+                             <label for="cell-zonal">Zone</label>
+                         </div>
+
+                     </div>
+                     <div class="modal-footer">
+                         <button type="submit" class="waves-effect btn">Delete</button>
+                     </div>
+                 </form>
+             </div>
+
+
+
+
+
+             <!--             Table display -->
+
+             <div class="card table-panel pink lighten-5" style="margin: 10px;">
+
+                 <table class="bordered highlight" border="1">
+                     <thead>
+                         <tr class="map-headers">
+                             <th class="valign-wrapper">
+                                 <input type="checkbox" class="filled-in checkbox-pink" id="all" />
+                                 <label for="all"></label>
+                             </th>
+                             <th>Id</th>
+                             <th>Service Number</th>
+                             <th>Zone</th>
+                             <th>Edc number</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr class="map-values">
+                             <td class="valign-wrapper">
+                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox1" name="cell" />
+                                 <label for="checkbox1"></label>
+                             </td>
+                             <td>1</td>
+                             <td>0762672828</td>
+                             <td>Tirunelveli</td>
+                             <td>472</td>
+                         </tr>
+                         <tr class="map-values">
+                             <td class="valign-wrapper">
+                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox2" name="cell" />
+                                 <label for="checkbox2"></label>
+                             </td>
+                             <td>2</td>
+                             <td>0762672828</td>
+                             <td>udumelpet</td>
+                             <td>472</td>
+                         </tr>
+                     </tbody>
+                 </table>
+             </div>
+
+
+             <!--             main-content ends here    -->
+         </div>
+
+         <!--    main continer ends here-->
+     </div>
+
+
+     <!--jquery script-->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+     <!--JavaScript at end of body for optimized loading-->
+     <!--    <script type="text/javascript" src="js/materialize.js"></script>-->
+     <script type=text/javascript src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+     <script type="text/javascript" src="js/charts.js"></script>
+
+     <script>
+         $(document).ready(function() {
+
+
+             $('select').material_select();
+             $('.modal').modal();
+
+
+
+             // function for checkbox selects all
+             $("#all").change(function() {
+
+                 if (this.checked) {
+                     $("[name='cell']").each(function() {
+                         $(this).prop('checked', true)
+                     })
+                 } else {
+                     $("[name='cell']").each(function() {
+                         $(this).prop('checked', false)
+                     })
+
+                 }
+
+             });
+
+             // deactivate / activate
+
+             $('input[name=cell]').change(function() {
+                 if ($(this).is(':checked')) {
+                     
+                     $("#edit-btn").removeClass('disabled')
+             $("#delete-btn").removeClass('disabled')
+                     
+                 } else {
+                     // Checkbox is not checked..
+                     $("#edit-btn").addClass('disabled')
+             $("#delete-btn").addClass('disabled')
+                 }
+             });
+
+
+             //function for checkbox - grab its siblings val
+
+             $("[name='cell']").click(getValues);
+
+
+         });
+
+         function getValues() {
+
+             var values = []
+
+             $.each($("input[name='cell']:checked").closest("td").siblings("td"),
+                 function() {
+
+                     values.push($(this).text());
+                 });
+
+             $("[name='id']").each(function() {
+                 $(this).val(values[0])
+             });
+             $("[name='serviceNumber']").each(function() {
+                 $(this).val(values[1])
+             });
+             $("[name='zonal']").each(function() {
+                 $(this).val(values[2])
+             });
+
+
+             Materialize.updateTextFields();
+
+
+
+
+         }
+
+     </script>
+
+ </body>
+
+ </html>

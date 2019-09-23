@@ -1,0 +1,185 @@
+body{
+
+    background-color: white;
+     font-family: sans-serif;
+    font-size: 1.2rem;
+}
+
+
+.brand-logo {
+
+    margin-left: 50px;
+}
+
+.side-navbar{
+
+    background-color: white;
+    height: 100vh;
+    box-shadow: 5px 10px 8px #888888;
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+
+}
+
+.active-page {
+
+
+    color: white;
+}
+
+
+.main-content{
+
+    height: 100vh;
+}
+
+.user-panel {
+
+    margin: 0px;
+    padding-top: 10px;
+    background-color: indigo;
+
+}
+
+.user-panel li a{
+
+    display: block;
+}
+
+
+
+.circle{
+
+    width: 64px;
+    height: 64px;
+}
+
+
+.menu-panel {
+
+    padding-top: 50px;
+}
+
+.menu-panel li a{
+
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+    background-color: grey;
+    margin:10px 2px ;
+
+}
+
+
+
+.menu-panel li a:hover {
+
+  background-color: royalblue;
+  color: white!important;
+
+}
+
+.main-content{
+
+    position: relative;
+
+
+}
+
+
+.header {
+    padding-top: 10px;
+    height: 100px;
+    background-color: orchid;
+
+}
+
+.show-case {
+
+    width: 100%;
+    margin: 0px;
+    display: flex;
+        justify-content: center;
+    position: absolute;
+    top: 10%;
+    left:-1%;
+
+
+}
+
+.card-holder {
+
+
+}
+
+/*project page css */
+
+.header-project {
+
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 64px;
+    background-color: orchid;
+    margin: 10px;
+
+}
+
+.search-panel .table-panel{
+
+    margin: 50px;
+}
+
+.map-headers >th {
+
+    text-align: center;
+
+}
+
+.map-values >td {
+
+    text-align: center;
+}
+
+/*statement page*/
+
+.query-tools{
+
+    padding: 10px 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+
+}
+
+.tab:hover{
+
+    background-color: lightgray;
+    color: white;
+
+
+}
+
+.tab>a {
+
+    color: black!important;
+    font-weight: 600;
+}
+
+
+
+/*customer page*/
+
+#cus-manage{
+
+    padding-top: 20px;
+}
+
+.cus-manage-tools {
+
+  margin-left:75%;
+
+}
+

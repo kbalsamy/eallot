@@ -1,0 +1,6 @@
+1. create db - go with sqlite3 initial then migrate data to postgresql(later goal)
+2. create table name - service_grouping
+schema
+id, name, remarks
+3. create service datatable
+4. connect CRUD tools to service table.

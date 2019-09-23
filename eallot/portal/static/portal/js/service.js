@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
-             var sgForm = $("#add-sg-form")
-             var sgForm_delete = $("#delete-sg-form")
-             var serviceMapping = $("#service-mapping")
-             var displayService = $("#display-service")
+             var sgForm = $("#add-sg-form");
+             var sgForm_delete = $("#delete-sg-form");
+             var serviceMapping = $("#service-mapping");
+             var displayService = $("#display-service");
+             var serviceUpdate = $("#service-update");
              $('select').material_select();
              $('.modal').modal();
              $('#servicelist-table').DataTable(
@@ -81,6 +82,12 @@ $(document).ready(function() {
 
              });
 
+
+             // service update requests handler
+
+
+
+
              // display selected service in the table
 
 
@@ -137,17 +144,15 @@ $(document).ready(function() {
              $("[name='id']").each(function() {
                  $(this).val(values[0])
              });
+
              $("[name='serviceNumber']").each(function() {
                  $(this).val(values[2])
              });
-             $("[name='zonal']").each(function() {
-                 $(this).val(values[3])
-             });
+
+             $("#zonal").val(values[3]);
 
 
              Materialize.updateTextFields();
 
 
-
-
-         }
+        }

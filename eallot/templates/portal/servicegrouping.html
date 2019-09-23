@@ -107,7 +107,7 @@
     </div>
     <!--Edit-tool modal -->
     <div id="edit-service" class="modal">
-        <form action="#">
+        <form action="#" method="post" id="service-update">
             <div class="modal-content">
                 <div class="input-field">
                     <input disabled type="text" id="cell-id" name="id">
@@ -118,8 +118,16 @@
                     <label class="active" for="cell-serviceNumber">Service Number</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" id="cell-zonal" name="zonal">
-                    <label class="active" for="cell-zonal">Zone</label>
+                    <input type="text" id="cell-serviceNumber" name="servicePassword">
+                    <label class="active" for="cell-serviceNumber">password</label>
+                </div>
+                <div class="input-field">
+                    <select>
+                        <option value="" id="zonal" selected></option>
+                        {% for edc in edc_groups %}
+                        <option value="{{ edc.name }}">{{ edc.name }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
             </div>
             <div class="modal-footer">
@@ -173,8 +181,8 @@
                         {% for service in services %}
                          <tr class="map-values">
                              <td class="valign-wrapper">
-                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox1" name="cell" />
-                                 <label for="checkbox1"></label>
+                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox{{ forloop.counter }}" name="cell" />
+                                 <label for="checkbox{{ forloop.counter }}"></label>
                              </td>
                              <td>{{ service.id }}</td>
                              <td>{{ service.serviceGroup.name }}</td>

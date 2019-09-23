@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from portal.views import router, addService, deleteService, servicesMapping
 
 app_name = 'portal'

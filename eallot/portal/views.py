@@ -35,7 +35,6 @@ def addService(request):
 def deleteService(request):
 
     name = request.GET.get('name')
-    print(name)
     query_obj = Service.objects.get(name=name)
     query_obj.delete()
     return HttpResponse('{} is deleted'.format(name))
@@ -50,3 +49,31 @@ def servicesMapping(request):
             return HttpResponse('Successfully added')
         else:
             return HttpResponse('Service Mapping Failed. Try Again!')
+
+# for testing
+def displayServiceView(request):
+
+    # groupName = request.GET.get("groupName")
+    query_objects = Service_Grouping.objects.filter(serviceGroup=10)
+    return render(request, "portal/servicelist.html", {"services": query_objects})
+
+
+def serviceUpdateView(request):
+
+    if request.method == "POST":
+        s_id = request.POST.get("id")
+        obj = Service_Grouping.objects.get(pk=s_id)
+        form = AddServicesForm(request.POST, instance=obj)
+        form.save()
+        return HttpResponse('service updated')
+    else:
+
+        return HttpResponse('Service update Failed. Try Again!')
+
+
+def serviceDeleteView(request):
+
+    number = request.GET.get('number')
+    obj = Service_Grouping.objects.get(serviceNumber=number)
+    obj.delete()
+    return HttpResponse('Service is deleted ')

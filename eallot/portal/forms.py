@@ -21,3 +21,4 @@ class AddServicesForm(ModelForm):
         model = Service_Grouping
         fields = ['serviceNumber', 'servicePassword', 'serviceZone', 'serviceGroup']
         labels = {'serviceZone': None}
+

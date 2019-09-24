@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
+
+
+{% block nav_links %}
+
+                 <li>
+                     <a href="{% url 'portal:service' %}" class="active-page">Project</a>
+                 </li>
+                 <li><a href="statement.html" class="black-text">Statement </a></li>
+                 <li><a href="customer.html" class="black-text">Customer</a></li>
+
+                 <li><a href="#!" class="black-text">Allotment </a></li>
+
+{% endblock %}
+
+
 {% block main_section %}
 <div class="col l10 main-content">
     <div class="header-project center">
@@ -107,10 +122,12 @@
     </div>
     <!--Edit-tool modal -->
     <div id="edit-service" class="modal">
-        <form action="#" method="post" id="service-update">
+        <form action="{% url 'portal:serviceupdate' %}" method="post" id="service-update">
+            {% csrf_token %}
             <div class="modal-content">
+
                 <div class="input-field">
-                    <input disabled type="text" id="cell-id" name="id">
+                    <input type="text" id="cell-id" name="id">
                     <label class="active" for="cell-id">Id</label>
                 </div>
                 <div class="input-field">
@@ -122,10 +139,18 @@
                     <label class="active" for="cell-serviceNumber">password</label>
                 </div>
                 <div class="input-field">
-                    <select>
-                        <option value="" id="zonal" selected></option>
+                    <select id="serviceZone" name="serviceZone">
+                         <option value="" selected disabled></option>
                         {% for edc in edc_groups %}
-                        <option value="{{ edc.name }}">{{ edc.name }}</option>
+                        <option value="{{ edc.id }}">{{ edc.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input-field">
+                    <select id="serviceGroup" name="serviceGroup">
+                        <option value="" selected disabled></option>
+                        {% for group in sg_obj %}
+                        <option value="{{ group.id }}">{{ group.name }}</option>
                         {% endfor %}
                     </select>
                 </div>
@@ -137,20 +162,18 @@
     </div>
     <!--  Delete tool modal -->
     <div id="delete-service" class="modal">
-        <form action="#">
+        <form action="{% url 'portal:servicedelete' %}" id="serviceDelete" method="get">
+
             <div class="modal-content">
                 <div class="input-field">
-                    <input type="text" id="cell-id" name="id" disabled>
+                    <input type="text" id="cell-id" name="id" readonly>
                     <label for="cell-id">Id</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" id="cell-serviceNumber" name="serviceNumber" disabled>
+                    <input type="text" id="cell-serviceNumber" name="serviceNumber" readonly>
                     <label for="cell-serviceNumber">Service Number</label>
                 </div>
-                <div class="input-field">
-                    <input type="text" id="cell-zonal" name="zonal" disabled>
-                    <label for="cell-zonal">Zone</label>
-                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="submit" class="waves-effect btn">Delete</button>
@@ -162,6 +185,8 @@
              <!--             Table display -->
 
              <div class="card table-panel pink lighten-5" style="margin: 10px;padding: 15px; ">
+
+                {% block table_display %}
 
                  <table class="bordered highlight" id="servicelist-table" style="font-size: 10pt" >
                      <thead>
@@ -193,6 +218,8 @@
                          {% endfor %}
                      </tbody>
                  </table>
+
+                 {% endblock %}
              </div>
 
 

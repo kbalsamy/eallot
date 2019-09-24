@@ -27,3 +27,25 @@ function writeTable() {
         count = 0;
     }
 }
+
+// alternate
+
+function writeTable() {
+    // declare html variable (a string holder):
+    var html = '';
+    for (var i = 0; i < array.length / 8; i++) {
+        // add opening <tr> tag to the string:
+        html += '<tr>';
+        for (var j = 0; j < totalCells; j++) {
+            // add <td> elements to the string:
+            html += '<td>' + array[count] + '</td>';
+            count++;
+        }
+        // add closing </tr> tag to the string:
+        html += '</tr>';
+    }
+    //append created html to the table body:
+    $('#body').append(html);
+    // reset the count:
+    count = 0;
+}

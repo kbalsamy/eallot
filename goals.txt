@@ -4,3 +4,10 @@ schema
 id, name, remarks
 3. create service datatable
 4. connect CRUD tools to service table.
+from django.http import JsonResponse
+
+def getPorts(request):
+    JSONer = {} 
+    ports = Port.objects.values()
+    JSONer['ports'] = ports
+    return JsonResponse(JSONer)

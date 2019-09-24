@@ -49,3 +49,8 @@ function writeTable() {
     // reset the count:
     count = 0;
 }
+
+>>> Blog.objects.values()
+[{'id': 1, 'name': 'Beatles Blog', 'tagline': 'All the latest Beatles news.'}],
+>>> Blog.objects.values('id', 'name')
+[{'id': 1, 'name': 'Beatles Blog'}]

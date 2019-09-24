@@ -168,6 +168,33 @@ body{
     font-weight: 600;
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: none;
+  color: black!important;
+  border-radius: 4px;
+  border: 1px solid #828282;
+  cursor: pointer!important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  background: none;
+  color: black!important;
+}
+
+.dataTables_paginate {
+
+    font-size:14px;
+    color:blue;
+    display: flex;
+    justify-content: space-around;
+}
+
+.dataTables_paginate span{
+
+    width: 100px;
+    display: flex;
+    justify-content: space-around;
+}
 
 
 /*customer page*/

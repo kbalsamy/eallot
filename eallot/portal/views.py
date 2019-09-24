@@ -13,12 +13,7 @@ def router(request):
     serviceForm = AddServicesForm
     sg_obj = Service.objects.all()
 
-    if request.method == "POST":
-        query_objects = request.POST.get('groupName')
-        query_objects = Service_Grouping.objects.filter(serviceGroup=query_objects)
-        return render(request, 'portal/servicegrouping.html', {'sg': sg_form, 'sg_obj': sg_obj, 'serviceForm': serviceForm, 'services': query_objects, 'edc_groups': edc_groups})
-    else:
-        return render(request, 'portal/servicegrouping.html', {'sg': sg_form, 'sg_obj': sg_obj, 'serviceForm': serviceForm})
+    return render(request, 'portal/servicegrouping.html', {'sg': sg_form, 'sg_obj': sg_obj, 'serviceForm': serviceForm, 'edc_groups': edc_groups})
 
 
 def addService(request):
@@ -51,11 +46,17 @@ def servicesMapping(request):
             return HttpResponse('Service Mapping Failed. Try Again!')
 
 # for testing
+
+
 def displayServiceView(request):
 
-    # groupName = request.GET.get("groupName")
-    query_objects = Service_Grouping.objects.filter(serviceGroup=10)
-    return render(request, "portal/servicelist.html", {"services": query_objects})
+    groupName = request.GET.get("groupName")
+    edc_groups = EDC.objects.all()
+    sg_obj = Service.objects.all()
+    sg_form = SGForm
+    serviceForm = AddServicesForm
+    query_objects = Service_Grouping.objects.filter(serviceGroup=groupName)
+    return render(request, "portal/servicelist.html", {'sg': sg_form, 'sg_obj': sg_obj, 'serviceForm': serviceForm, 'services': query_objects, 'edc_groups': edc_groups})
 
 
 def serviceUpdateView(request):

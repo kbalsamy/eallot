@@ -92,8 +92,8 @@
 
             </div>
 
-                <form class="col s4" method="post", action="{% url 'portal:service' %}" name="display-service">
-                    {% csrf_token %}
+                <form class="col s4" method="get", action="{% url 'portal:servicedisplay' %}" name="display-service">
+
                 <div class="input-field col s7">
                     <select id="selected-service" name="groupName">
                         <option value="" disabled selected>Select Service Group</option>
@@ -203,19 +203,7 @@
                          </tr>
                      </thead>
                      <tbody>
-                        {% for service in services %}
-                         <tr class="map-values">
-                             <td class="valign-wrapper">
-                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox{{ forloop.counter }}" name="cell" />
-                                 <label for="checkbox{{ forloop.counter }}"></label>
-                             </td>
-                             <td>{{ service.id }}</td>
-                             <td>{{ service.serviceGroup.name }}</td>
-                             <td>{{ service.serviceNumber }}</td>
-                             <td>{{ service.serviceZone.name }}</td>
-                             <td>{{ service.serviceZone.code }}</td>
-                         </tr>
-                         {% endfor %}
+
                      </tbody>
                  </table>
 

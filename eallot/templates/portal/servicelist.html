@@ -1,5 +1,42 @@
 
 
+{% extends 'portal/servicegrouping.html' %}
+
+{% block table_display %}
+
+                 <table class="bordered highlight" id="servicelist-table" style="font-size: 10pt" >
+                     <thead>
+                         <tr class="map-headers">
+                             <th>
+                                 <!-- <input type="checkbox" class="filled-in checkbox-pink" id="all" /> -->
+                                 <!-- <label for="all"></label> -->
+                             </th>
+                             <th>Id</th>
+                             <th>Group Name</th>
+                             <th>Service Number</th>
+                             <th>Zone</th>
+                             <th>Edc number</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                        {% for service in services %}
+                         <tr class="map-values">
+                             <td class="valign-wrapper">
+                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox{{ forloop.counter }}" name="cell" />
+                                 <label for="checkbox{{ forloop.counter }}"></label>
+                             </td>
+                             <td>{{ service.id }}</td>
+                             <td>{{ service.serviceGroup.name }}</td>
+                             <td>{{ service.serviceNumber }}</td>
+                             <td>{{ service.serviceZone.name }}</td>
+                             <td>{{ service.serviceZone.code }}</td>
+                         </tr>
+                         {% endfor %}
+                     </tbody>
+                 </table>
+
+                 {% endblock %}
+
 
 
 

@@ -19,10 +19,6 @@ $(document).ready(function() {
                 dataType:'json',
                 success: function(data) {
 
-                    console.log(data[0]["fields"]['name'])
-                    $('ul.tabs').tabs('select_tab', 'results')
-
-
 
             },
                 error: function(data) {

@@ -66,13 +66,13 @@ class GeneratorReadings(models.Model):
     bankingC3 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
     bankingC4 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
     bankingC5 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC002 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC003 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC004 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC005 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC006 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC007 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
-    chargesC001 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC002 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC003 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC004 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC005 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC006 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC007 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC001 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
 
     def __str__(self):
 

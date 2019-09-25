@@ -124,3 +124,11 @@ STATIC_URL = '/static/'
 
 # crispy settings
 CRISPY_TEMPLATE_PACK = 'materialize_css_forms'
+
+
+# api keys
+
+API_PASSWORD = "niSMJC6TMwZWk8qqMR6R9g=="
+LOGIN_URL = "http://htoa.tnebnet.org/oa-auth-service//tokens/login"
+GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatements?"
+READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatement/{}"

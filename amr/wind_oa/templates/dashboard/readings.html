@@ -1,0 +1,58 @@
+{% extends 'dashboard/index.html' %}
+{% load static %}
+
+{% block main %}
+
+<h4 class="center-text">Readings table {{ time.month }} / {{ time.year }}</h4>
+
+<div class="card  green accent-1 lighten-3" style="margin-top: 30px">
+                <table class="highlight">
+                    <thead>
+                        <tr>
+                            <th>consumer ID</th>
+                            <th>Imp-C1</th>
+                            <th>Imp-C2</th>
+                            <th>Imp-C3</th>
+                            <th>Imp-C4</th>
+                            <th>Imp-C5</th>
+                            <th>Exp-C1</th>
+                            <th>Exp-C2</th>
+                            <th>Exp-C3</th>
+                            <th>Exp-C4</th>
+                            <th>Exp-C5</th>
+                            <th>Net-C1</th>
+                            <th>Net-C2</th>
+                            <th>Net-C3</th>
+                            <th>Net-C4</th>
+                            <th>Net-C5</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                    </tr>
+                    <tbody>
+                        {% for reading in readings %}
+                            <tr>
+                            <td>{{ reading.consumerID}}</td>
+                            <td>{{ reading.impUnitsC1}}</td>
+                            <td>{{ reading.impUnitsC2}}</td>
+                            <td>{{ reading.impUnitsC3}}</td>
+                            <td>{{ reading.impUnitsC4}}</td>
+                            <td>{{ reading.impUnitsC5}}</td>
+                            <td>{{ reading.expUnitsC1}}</td>
+                            <td>{{ reading.expUnitsC2}}</td>
+                            <td>{{ reading.expUnitsC3}}</td>
+                            <td>{{ reading.expUnitsC4}}</td>
+                            <td>{{ reading.expUnitsC5}}</td>
+                            <td>{{ reading.netUnitsC1}}</td>
+                            <td>{{ reading.netUnitsC2}}</td>
+                            <td>{{ reading.netUnitsC3}}</td>
+                            <td>{{ reading.netUnitsC4}}</td>
+                            <td>{{ reading.netUnitsC5}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+{% endblock %}

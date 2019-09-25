@@ -1,4 +1,4 @@
-$(document).ready(function() {
+    $(document).ready(function() {
 
     var sgForm = $("#add-sg-form");
     var sgForm_delete = $("#delete-sg-form");
@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     });
     $(".dataTables_info").css("font-size", "12px");
-    $(".dataTables_paginate").css({"font-size": "14px", 'display':'flex', 'padding':'5px'});
+    // $(".dataTables_paginate").css({"font-size": "14px", 'display':'flex', 'padding':'5px'});
 
 
 

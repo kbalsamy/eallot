@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from portal.forms import SGForm, AddServicesForm, EDC
-from django.http import HttpResponseRedirect, HttpResponse
-from portal.models import Service, Service_Grouping
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from portal.models import Service, Service_Grouping, GeneratorReadings
 from django.shortcuts import get_object_or_404
+from django.core import serializers
 # Create your views here.
 
 
@@ -78,3 +79,25 @@ def serviceDeleteView(request):
     obj = Service_Grouping.objects.get(serviceNumber=number)
     obj.delete()
     return HttpResponse('Service is deleted ')
+
+
+def statementDownloadView(request):
+
+    # get query params from request object
+    # get all the service number in the selected group
+    group = request.POST.get('group')
+
+    month = request.POST.get('month')
+    year = request.POST.get('year')
+    # query the model using multiple params
+    query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year)
+    readings = serializers.serialize("json", list(query_set), fields=('name'))
+    return HttpResponse(readings)
+
+
+def statementView(request):
+
+    # passing group objects
+    sg_obj = Service.objects.all()
+
+    return render(request, 'portal/statement.html', {'sg_obj': sg_obj})

@@ -1,0 +1,172 @@
+[
+{
+    "id": "421",
+    "code": "421",
+    "name": "KRISHNAGIRI",
+    "typeCode": "EDC",
+    "parentCode": "8",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "426",
+    "code": "426",
+    "name": "ERODE",
+    "typeCode": "EDC",
+    "parentCode": "4",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "432",
+    "code": "432",
+    "name": "COIMBATORE SOUTH",
+    "typeCode": "EDC",
+    "parentCode": "3",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "434",
+    "code": "434",
+    "name": "UDUMALPET",
+    "typeCode": "EDC",
+    "parentCode": "3",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "436",
+    "code": "436",
+    "name": "GOBI",
+    "typeCode": "EDC",
+    "parentCode": "4",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "438",
+    "code": "438",
+    "name": "TIRUPPUR",
+    "typeCode": "EDC",
+    "parentCode": "3",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "439",
+    "code": "439",
+    "name": "PALLADAM",
+    "typeCode": "EDC",
+    "parentCode": "3",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "442",
+    "code": "442",
+    "name": "TRICHY (METRO)",
+    "typeCode": "EDC",
+    "parentCode": "6",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "443",
+    "code": "443",
+    "name": "KARUR",
+    "typeCode": "EDC",
+    "parentCode": "6",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "446",
+    "code": "446",
+    "name": "PUDUKOTTAI",
+    "typeCode": "EDC",
+    "parentCode": "6",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "450",
+    "code": "450",
+    "name": "DINDIGUL",
+    "typeCode": "EDC",
+    "parentCode": "5",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "452",
+    "code": "452",
+    "name": "MADURAI",
+    "typeCode": "EDC",
+    "parentCode": "5",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "460",
+    "code": "460",
+    "name": "SIVAGANGAI",
+    "typeCode": "EDC",
+    "parentCode": "5",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "462",
+    "code": "462",
+    "name": "VIRUDUNAGAR",
+    "typeCode": "EDC",
+    "parentCode": "7",
+    "ncesDivisionCode": null,
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "470",
+    "code": "470",
+    "name": "TUTICORIN",
+    "typeCode": "EDC",
+    "parentCode": "7",
+    "ncesDivisionCode": "NCESTRVL",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "472",
+    "code": "472",
+    "name": "TIRUNELVELI",
+    "typeCode": "EDC",
+    "parentCode": "7",
+    "ncesDivisionCode": "NCESTRVL",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "474",
+    "code": "474",
+    "name": "KANYAKUMARI",
+    "typeCode": "EDC",
+    "parentCode": "7",
+    "ncesDivisionCode": "NCESTRVL",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "476",
+    "code": "476",
+    "name": "THENI",
+    "typeCode": "EDC",
+    "parentCode": "5",
+    "ncesDivisionCode": "NCESUDML",
+    "fuelTypeCode": "WIND"
+},
+{
+    "id": "478",
+    "code": "478",
+    "name": "RAMNAD",
+    "typeCode": "EDC",
+    "parentCode": "5",
+    "ncesDivisionCode": "NCESTRVL",
+    "fuelTypeCode": "WIND"
+}]

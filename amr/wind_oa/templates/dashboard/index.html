@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection" />
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+    <!-- nav bar fixed -->
+    <nav>
+        <div class="nav-wrapper indigo">
+            <a href="#!" class="brand-logo">Web Application AMR</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="waves-effect waves-light btn orange text-clack" href="#">Sign-out</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- main section -->
+    <div class="row">
+
+        <div class="col s12 m2 l2 " style="padding: 0px">
+            <div class="col l12" style="padding-top: 100px;">
+                <a href="{% url 'dashboard:home' %}" class="waves-effect waves-light  indigo darken-1 btn" style="width:100%">Dashboard</a>
+            </div>
+            <div class="col l12" style="padding-top: 10px;">
+                <a class="waves-effect waves-light  indigo darken-1 btn" style="width:100%">Allotment</a>
+            </div>
+            <div class="col l12" style="padding-top: 10px;">
+                <a class="waves-effect waves-light  indigo darken-1 btn" style="width:100%">Settings</a>
+            </div>
+        </div>
+
+
+
+        <div class="col s12 m10 l10">
+            {% block main %}
+            <!-- Teal page content  -->
+            <div class="container" style="display: flex; justify-content: flex-end; margin-top: 15px">
+                <a class="waves-effect waves-light btn modal-trigger" href="#modal1">ConnectDB</a>
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal" style="height:500px">
+                    <div class="modal-content">
+                        <h5 class="center-align">Download Current Month data</h5>
+                        <div class="col s12 m6 l12">
+                            <div class="input-field col s12">
+                                <select id ="customer">
+                                    <option  value=""selected>select Customer</option>
+                                    <option value="Nupower">Nupower</option>
+                                    <option value="Echanda">Echanda</option>
+                                </select>
+                                <label>Customer</label>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <div class="input-field col s12">
+                                <select id="month">
+                                    <option value="" disabled selected>select Month</option>
+                                    <option value="01">January</option>
+                                    <option value="02">Febuary</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09" disabled>September</option>
+                                    <option value="10" disabled>October</option>
+                                    <option value="11" disabled>November</option>
+                                    <option value="12" disabled>December</option>
+                                </select>
+                                <label>Month</label>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <div class="input-field col s12">
+                                <select id="year">
+                                    <option  value=""selected>select year</option>
+                                    <option value="2019">2019</option>
+                                </select>
+                                <label>year</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <a class="modal-close waves-effect waves-green btn-flat" id="btn-dbc">Download</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card  indigo lighten-5" style="margin-left: 75px;margin-top: 100px; width: 80%">
+                <div class="row">
+
+
+
+
+
+                <form method="POST" action="{% url 'dashboard:readings' %}" id ='myform'>
+                    {% csrf_token %}
+                        <div class="col s12 m6 l12">
+                            <div class="input-field col s12">
+                                <select id='d-customer'>
+                                    <option value="" disabled selected>select Customer</option>
+                                    <option value="2019">Nupower</option>
+                                    <option value="2019">Echanda</option>
+                                </select>
+                                <label>Customer</label>
+                            </div>
+
+                            <input type="hidden"  name="customer", value="" id='d-cus'>
+
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <div class="input-field col s12">
+                                <select id ='d-month'>
+                                    <option value="" disabled selected>select Month</option>
+                                    <option value="01">January</option>
+                                    <option value="02">Febuary</option>
+                                    <option value="03">March</option>
+                                    <option value="04">April</option>
+                                    <option value="05">May</option>
+                                    <option value="06">June</option>
+                                    <option value="07">July</option>
+                                    <option value="08">August</option>
+                                    <option value="09" disabled>September</option>
+                                    <option value="10" disabled>October</option>
+                                    <option value="11" disabled>November</option>
+                                    <option value="12" disabled>December</option>
+                                </select>
+                                <label>Month</label>
+                            </div>
+                            <input type="hidden" name="month", value="" id='d-mon'>
+                        </div>
+
+                        <div class="col s12 m6 l6">
+                            <div class="input-field col s12">
+                                <select id ='d-year'>
+                                    <option value="" disabled selected>select year</option>
+                                    <option value="2019">2019</option>
+                                </select>
+                                <label>year</label>
+                            </div>
+                            <input type="hidden" name="year", value="" id='d-yr'>
+                        </div>
+
+                        <div class="col s12 m6 l12">
+                            <div class="input-field col s12" style="display: flex; justify-content: center;">
+                                <input type="submit" name="submit" id="sub-btn">
+                            </div>
+                        </div>
+
+                </form>
+
+                </div>
+
+            </div>
+            {% endblock %}
+        </div>
+
+
+        <!--JavaScript at end of body for optimized loading-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('select').formSelect();
+            $('.fixed-action-btn').floatingActionButton();
+            $('.modal').modal();
+
+            $("#btn-dbc").click(function(){
+
+
+                var month = $("#month").val()
+                var year = $("#year").val()
+                var customer = $("#customer").val()
+
+                console.log(month, year, customer)
+
+                $.ajax({
+
+                    type:'get',
+                    url :"{% url 'dashboard:dbconnect' %}",
+                    data: {'month':month, 'year':year, 'customer':customer},
+                    success: function(data){
+
+                        console.log(data)
+                    }
+
+                })
+
+
+            });
+
+            $("#sub-btn").click(function(){
+
+                    var customer = $('#d-customer').val()
+                    var month = $('#d-month').val()
+                    var year = $("#d-year").val()
+
+                    console.log(customer, month, year)
+
+                    $('#d-cus').val(customer)
+                    $('#d-mon').val(month)
+                    $("#d-yr").val(year)
+
+                    $("#myform").submit()
+
+            });
+
+
+
+
+
+        });
+        </script>
+</body>
+
+</html>
+
+<!--
+             <div class="fixed-action-btn">
+                <a class="btn-floating btn-large red">
+                    <i class="large material-icons">menu</i>
+                </a>
+                <ul>
+                    <li><a class="btn-floating red"><i class="material-icons">local_printshop</i></a></li>
+                    <li><a class="btn-floating green"><i class="material-icons">file_download</i></a></li>
+
+                </ul>
+            </div>
+        </div> -->

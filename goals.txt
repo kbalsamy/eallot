@@ -6,6 +6,12 @@ id, name, remarks
 4. connect CRUD tools to service table.
 from django.http import JsonResponse
 
+5. create db for generator readings and meter readings
+
+6. connect to the views to display it.
+
+
+
 def getPorts(request):
     JSONer = {} 
     ports = Port.objects.values()

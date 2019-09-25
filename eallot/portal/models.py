@@ -35,3 +35,45 @@ class Service_Grouping(models.Model):
     def __str__(self):
 
         return self.serviceNumber
+
+# db for generator monthly generator readings
+
+
+class GeneratorReadings(models.Model):
+
+    genstatementID = models.CharField(max_length=10, unique=True)
+    consumerID = models.CharField(max_length=12, blank=True)
+    statementMonth = models.CharField(max_length=2, blank=True)
+    statementYear = models.CharField(max_length=4, blank=True)
+    companyName = models.CharField(max_length=150, blank=True)
+    impUnitsC1 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    impUnitsC2 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    impUnitsC3 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    impUnitsC4 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    impUnitsC5 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    expUnitsC1 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    expUnitsC2 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    expUnitsC3 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    expUnitsC4 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    expUnitsC5 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    netUnitsC1 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    netUnitsC2 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    netUnitsC3 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    netUnitsC4 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    netUnitsC5 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    bankingC1 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    bankingC2 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    bankingC3 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    bankingC4 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    bankingC5 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC002 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC003 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC004 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC005 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC006 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC007 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+    chargesC001 = models.DecimalField(max_digits=12, decimal_places=2, blank=True)
+
+    def __str__(self):
+
+        return self.consumerID + '_' + self.statementMonth + self.statementYear

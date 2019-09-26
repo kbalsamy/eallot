@@ -19,7 +19,7 @@ $(document).ready(function() {
                 dataType:'json',
                 success: function(data) {
 
-
+                    $("#results").html(data)
             },
                 error: function(data) {
                     Materialize.toast('error Try again!', 2000 )
@@ -30,7 +30,18 @@ $(document).ready(function() {
 
 
 
-
          });
+
+function cleanData(data){
+
+    var html = ""
+
+    data.forEach(function(item, index){
+
+        html += "<td>item</td>"
+
+
+    });
+}
 
 

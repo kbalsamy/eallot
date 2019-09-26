@@ -105,11 +105,11 @@ def main(month, year, consumerList):
     return data_bin
 
 
-def db():
+def db(month, year, consumerList):
     tablename = 'portal_generatorreadings'
     con = sqlite3.connect('db.sqlite3')
     cursor = con.cursor()
-    data = main('01', '2019', [{'serviceNumber': '079304724065', 'serviceZone__code': '472'}])
+    data = main(month, year, consumerList)
     if data:
         for i in data:
             print(len(i))

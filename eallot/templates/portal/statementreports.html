@@ -1,0 +1,63 @@
+
+{% extends 'portal/statement.html' %}
+{% load static %}
+{% block reading_table %}
+<table class="bordered highlight" id="summary-table" style="font-size: 12px">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Service Number</th>
+                        <th colspan="5" class="center-align">Net Units</th>
+                        <th colspan="5" class="center-align">Banking Units</th>
+                        <th colspan="7" class="center-align">Charges</th>
+                    </tr>
+                    <tr>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C6</th>
+                        <th>C7</th>
+                        <th>C1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reading in readings %}
+                        {% for r in reading %}
+                        <tr>
+                        <td>{{ r.consumerID }}</td>
+                        <td>{{ r.netUnitsC1 }}</td>
+                        <td>{{ r.netUnitsC2 }}</td>
+                        <td>{{ r.netUnitsC3 }}</td>
+                        <td>{{ r.netUnitsC4 }}</td>
+                        <td>{{ r.netUnitsC5 }}</td>
+                        <td>{{ r.bankingC1 }}</td>
+                        <td>{{ r.bankingC2 }}</td>
+                        <td>{{ r.bankingC3 }}</td>
+                        <td>{{ r.bankingC4 }}</td>
+                        <td>{{ r.bankingC5 }}</td>
+                        <td>{{ r.chargesC002 }}</td>
+                        <td>{{ r.chargesC003 }}</td>
+                        <td>{{ r.chargesC004 }}</td>
+                        <td>{{ r.chargesC005 }}</td>
+                        <td>{{ r.chargesC006 }}</td>
+                        <td>{{ r.chargesC007 }}</td>
+                        <td>{{ r.chargesC001 }}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+{% endblock %}
+
+

@@ -97,15 +97,32 @@ def statementDownloadView(request):
     readings = []
     # query the model using multiple params put in list
     for service in consumerList:
-        query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year, consumerID=service['serviceNumber'])
-        values = serializers.serialize("json", list(query_set))
+        query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year, consumerID=service['serviceNumber']).values('consumerID', 'netUnitsC1', 'netUnitsC2', 'netUnitsC3', 'netUnitsC4', 'netUnitsC5', 'bankingC1', 'bankingC2', 'bankingC3', 'bankingC4', 'bankingC5', 'chargesC002', 'chargesC003', 'chargesC004', 'chargesC005', 'chargesC006', 'chargesC007', 'chargesC001')
+        values = list(query_set)
         readings.append(values)
 
-    return HttpResponse(json.dumps(readings), content_type="application/json")
+    return JsonResponse(readings, safe=False)
 
 
 def statementView(request):
-
     # passing group objects
     sg_obj = Service.objects.all()
     return render(request, 'portal/statement.html', {'sg_obj': sg_obj})
+
+
+def statementFetchView(request):
+
+    sg_obj = Service.objects.all()
+    group = request.POST.get('group')
+    month = request.POST.get('month')
+    year = request.POST.get('year')
+    # get service numbers from the group
+    services = Service_Grouping.objects.filter(serviceGroup__name=group)
+    consumerList = services.values('serviceNumber')
+    readings = []
+    # query the model using multiple params put in list
+    for service in consumerList:
+        query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year, consumerID=service['serviceNumber'])
+        readings.append(query_set)
+
+    return render(request, 'portal/statementreports.html', {'sg_obj': sg_obj, 'readings': readings})

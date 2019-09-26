@@ -23,10 +23,15 @@ var count = 0;
 var totalCells = 8;
 
 function writeTable() {
+
     var tbody = $('#body');
+
     for (var i = 0; i < array.length / 8; i++) {
+
         var tr = $('<tr/>').appendTo(tbody);
+
         for (var j = 0; j < totalCells; j++) {
+
             tr.append('<td>' + array[count] + '</td>');
             count++;
         }
@@ -60,3 +65,65 @@ function writeTable() {
 [{'id': 1, 'name': 'Beatles Blog', 'tagline': 'All the latest Beatles news.'}],
 >>> Blog.objects.values('id', 'name')
 [{'id': 1, 'name': 'Beatles Blog'}]
+
+
+
+//  bulkDownload.submit(function(e){
+
+            //     e.preventDefault();
+            //     $.ajax({
+            //     type: bulkDownload.attr('method'),
+            //     url: bulkDownload.attr('action'),
+            //     data:bulkDownload.serialize(),
+            //     success: function(data) {
+
+            //         // if (data.length> 0){
+            //         //     writeTable(data)
+            //         // }else{
+            //         //     $("#readings").append("<tr>No data available</tr>")
+            //         // }
+
+
+            //         // $('ul.tabs').tabs('select_tab', 'results')
+            // },
+            //     error: function(data) {
+            //         Materialize.toast('error Try again!', 2000 )
+            //     },
+            //     })
+
+            //  });
+
+
+
+
+
+// function writeTable(results){
+
+//    var html=''
+
+//     results.forEach(function(item, index){
+
+//         html += "<tr><td>" + item[0]["consumerID"] + "</td>"+
+//         "<td>" + item[0]["netUnitsC1"] + "</td>"+
+//         "<td>" + item[0]["netUnitsC2"] + "</td>" +
+//         "<td>" + item[0]["netUnitsC3"] + "</td>" +
+//         "<td>" + item[0]["netUnitsC4"] + "</td>" +
+//         "<td>" + item[0]["netUnitsC5"] + "</td>" +
+//         "<td>" + item[0]["bankingC1"] + "</td>" +
+//         "<td>" + item[0]["bankingC2"] + "</td>" +
+//         "<td>" + item[0]["bankingC3"] + "</td>" +
+//         "<td>" + item[0]["bankingC4"] + "</td>" +
+//         "<td>" + item[0]["bankingC5"] + "</td>" +
+//         "<td>" + item[0]["chargesC002"] + "</td>" +
+//         "<td>" + item[0]["chargesC003"] + "</td>" +
+//         "<td>" + item[0]["chargesC004"] + "</td>" +
+//         "<td>" + item[0]["chargesC005"] + "</td>" +
+//         "<td>" + item[0]["chargesC006"] + "</td>" +
+//         "<td>" + item[0]["chargesC007"] + "</td>" +
+//         "<td>" + item[0]["chargesC001"] + "</td></tr>"
+
+// });
+
+//     $("#readings").append(html)
+// }
+

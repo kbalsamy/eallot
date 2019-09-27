@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs tabs-fixed-width z-depth-1">
-                <li class="tab col s3"><a class="active" href="#bulk-download">Bulk Download</a></li>
+                <li class="tab col s3"><a class="active" href="#bulk-download">Groupwise Readings</a></li>
                 <li class="tab col s3"><a href="#customized-download">Single Download</a></li>
             </ul>
         </div>
@@ -64,7 +64,7 @@
             </div>
 
             {% block reading_table %}
-
+            <div class="card green lighten-4">
             <table class="bordered highlight" id="summary-table" style="font-size: 12px">
                 <thead>
                     <tr>
@@ -95,33 +95,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for reading in readings %}
-                        {% for r in reading %}
-                        <tr>
-                        <td>{{ r.consumerID }}</td>
-                        <td>{{ r.netUnitsC1 }}</td>
-                        <td>{{ r.netUnitsC2 }}</td>
-                        <td>{{ r.netUnitsC3 }}</td>
-                        <td>{{ r.netUnitsC4 }}</td>
-                        <td>{{ r.netUnitsC5 }}</td>
-                        <td>{{ r.bankingC1 }}</td>
-                        <td>{{ r.bankingC2 }}</td>
-                        <td>{{ r.bankingC3 }}</td>
-                        <td>{{ r.bankingC4 }}</td>
-                        <td>{{ r.bankingC5 }}</td>
-                        <td>{{ r.chargesC002 }}</td>
-                        <td>{{ r.chargesC003 }}</td>
-                        <td>{{ r.chargesC004 }}</td>
-                        <td>{{ r.chargesC005 }}</td>
-                        <td>{{ r.chargesC006 }}</td>
-                        <td>{{ r.chargesC007 }}</td>
-                        <td>{{ r.chargesC001 }}</td>
-                        <tr>
-                        {% endfor %}
-                    {% endfor %}
+
                 </tbody>
                 <tfoot></tfoot>
             </table>
+            </div>
 
             {% endblock %}
         </div>

@@ -6,7 +6,7 @@
     var displayService = $("#display-service");
     var serviceUpdate = $("#service-update");
     var serviceDelete = $("#serviceDelete");
-    $('select').material_select();
+    $('select').formSelect();
     $('.modal').modal();
     $('#servicelist-table').DataTable({
         "searching": false,
@@ -15,8 +15,6 @@
 
     });
     $(".dataTables_info").css("font-size", "12px");
-    // $(".dataTables_paginate").css({"font-size": "14px", 'display':'flex', 'padding':'5px'});
-
 
 
     // handle post request for adding the service group into db

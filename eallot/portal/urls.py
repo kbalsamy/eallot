@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from portal.views import router, addService, deleteService, servicesMapping, serviceUpdateView, serviceDeleteView, displayServiceView, statementView, statementDownloadView, statementFetchView
+from portal.views import router, addService, deleteService, servicesMapping, serviceUpdateView, serviceDeleteView, displayServiceView, statementView, statementFetchView, statementDownloadView
 
 app_name = 'portal'
 
@@ -11,6 +11,6 @@ urlpatterns = [path('service', router, name='service'),
                path('service/update', serviceUpdateView, name='serviceupdate'),
                path('service/servicedelete', serviceDeleteView, name='servicedelete'),
                path('statement', statementView, name='statement'),
-               path('statement/download', statementDownloadView, name='statementdownload'),
                path('statement/readings', statementFetchView, name='statementfetch'),
+               path('statement/show', statementDownloadView, name='showreadings'),
                ]

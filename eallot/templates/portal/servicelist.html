@@ -10,7 +10,7 @@
                              <th>
                                  <label>
         <input type="checkbox" />
-        <span>Red</span>
+
       </label>
                              </th>
                              <th>Id</th>
@@ -23,9 +23,11 @@
                      <tbody>
                         {% for service in services %}
                          <tr class="map-values">
-                             <td class="valign-wrapper">
-                                 <input type="checkbox" class="filled-in checkbox-pink" id="checkbox{{ forloop.counter }}" name="cell" />
-                                 <label for="checkbox{{ forloop.counter }}"></label>
+                             <td>
+                                <label>
+                                 <input type="checkbox" id="checkbox{{ forloop.counter }}" name="cell" />
+                                 <span></span>
+                                 </label>
                              </td>
                              <td>{{ service.id }}</td>
                              <td>{{ service.serviceGroup.name }}</td>

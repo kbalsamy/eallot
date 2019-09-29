@@ -122,6 +122,24 @@ function writeTable() {
 //         "<td>" + item[0]["chargesC007"] + "</td>" +
 //         "<td>" + item[0]["chargesC001"] + "</td></tr>"
 
+"<tr><td>" + item['fields']["consumerID"] + "</td>"+
+        "<td>" + item['fields']["netUnitsC1"] + "</td>"+
+        "<td>" + item['fields']["netUnitsC2"] + "</td>" +
+        "<td>" + item['fields']["netUnitsC3"] + "</td>" +
+        "<td>" + item['fields']["netUnitsC4"] + "</td>" +
+        "<td>" + item['fields']["netUnitsC5"] + "</td>" +
+        "<td>" + item['fields']["bankingC1"] + "</td>" +
+        "<td>" + item['fields']["bankingC2"] + "</td>" +
+        "<td>" + item['fields']["bankingC3"] + "</td>" +
+        "<td>" + item['fields']["bankingC4"] + "</td>" +
+        "<td>" + item['fields']["bankingC5"] + "</td>" +
+        "<td>" + item['fields']["chargesC002"] + "</td>" +
+        "<td>" + item['fields']["chargesC003"] + "</td>" +
+        "<td>" + item['fields']["chargesC004"] + "</td>" +
+        "<td>" + item['fields']["chargesC005"] + "</td>" +
+        "<td>" + item['fields']["chargesC006"] + "</td>" +
+        "<td>" + item['fields']["chargesC007"] + "</td>" +
+        "<td>" + item['fields']["chargesC001"] + "</td></tr>"
 // });
 
 //     $("#readings").append(html)

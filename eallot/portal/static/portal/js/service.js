@@ -1,19 +1,22 @@
     $(document).ready(function() {
 
+
+
     var sgForm = $("#add-sg-form");
     var sgForm_delete = $("#delete-sg-form");
     var serviceMapping = $("#service-mapping");
     var displayService = $("#display-service");
     var serviceUpdate = $("#service-update");
     var serviceDelete = $("#serviceDelete");
-    $('select').formSelect();
-    $('.modal').modal();
     $('#servicelist-table').DataTable({
         "searching": false,
         "ordering": false,
         "pagingType": "full_numbers"
 
     });
+    $('select').formSelect();
+    $('.modal').modal();
+
     $(".dataTables_info").css("font-size", "12px");
 
 
@@ -26,13 +29,13 @@
             url: sgForm.attr('action'),
             data: sgForm.serialize(),
             success: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
                 $('.modal').modal('close');
                 setTimeout(function(){ location.reload(); }, 1000);
 
             },
             error: function(data) {
-                Materialize.toast('connection timeout', 2000 )
+                M.toast({html:'Connection timeout!!'})
             },
 
         })
@@ -49,12 +52,12 @@
             url: sgForm_delete.attr('action'),
             data: { 'name': $("#del-name").val() },
             success: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
                 $('.modal').modal('close');
                 setTimeout(function(){ location.reload(); }, 1000);
             },
             error: function(data) {
-                Materialize.toast('error', 2000);
+                M.toast({html:"Error, Try again!"});
                 $('.modal').modal('close');
             },
 
@@ -71,12 +74,12 @@
             url: serviceMapping.attr('action'),
             data: serviceMapping.serialize(),
             success: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
                 $('.modal').modal('close');
                 setTimeout(function(){ location.reload(); }, 1000);
             },
             error: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
             },
 
         });
@@ -94,14 +97,14 @@
             url: serviceUpdate.attr('action'),
             data: serviceUpdate.serialize(),
             success: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
                 $('.modal').modal('close');
                 setTimeout(function(){ location.reload(); }, 1000);
 
 
             },
             error: function(data) {
-                Materialize.toast('error! Fill all options and try again', 2000)
+                M.toast({html:'error! Fill all options and try again'})
                ;
             },
         });
@@ -119,13 +122,13 @@
             url: serviceDelete.attr('action'),
             data: {'number': $("#serviceDelete input[name='serviceNumber']").val()},
             success: function(data) {
-                Materialize.toast(data, 2000)
+                M.toast({html:data})
                 $('.modal').modal('close');
                 setTimeout(function(){ location.reload(); }, 1000);
 
             },
             error: function(data) {
-                Materialize.toast('error! try again', 2000)
+                M.toast({html:"Error, Try again!"})
                ;
             },
         });
@@ -199,7 +202,7 @@ function getValues() {
     // }).prop("selected", true);
 
 
-    Materialize.updateTextFields();
+    M.updateTextFields();
 
 
 }

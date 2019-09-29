@@ -1,0 +1,75 @@
+{% extends 'portal/statement.html' %}
+{% load static %}
+{% block bulk_readings %}
+
+
+            <div class="card">
+                {% if month and year %}
+                <p class="center-align">Generator statement for {{ month }} / {{ year }}</p>
+                {% endif %}
+            </div>
+
+            <div class="card green lighten-4">
+
+            <table class="bordered highlight" id="monthly-readings" style="font-size: 12px">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Service Number</th>
+                        <th colspan="5" class="center-align">Net Units</th>
+                        <th colspan="5" class="center-align">Banking Units</th>
+                        <th colspan="8" class="center-align">Charges</th>
+                    </tr>
+                    <tr>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+                        <th>C6</th>
+                        <th>C7</th>
+                        <th>C8</th>
+                        <th>C1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%  for reading in readings %}
+                <tr>
+                        <td>{{ reading.consumerID }}</td>
+                        <td>{{ reading.netUnitsC1 }}</td>
+                        <td>{{ reading.netUnitsC2 }}</td>
+                        <td>{{ reading.netUnitsC3 }}</td>
+                        <td>{{ reading.netUnitsC4 }}</td>
+                        <td>{{ reading.netUnitsC5 }}</td>
+                        <td>{{ reading.bankingC1 }}</td>
+                        <td>{{ reading.bankingC2 }}</td>
+                        <td>{{ reading.bankingC3 }}</td>
+                        <td>{{ reading.bankingC4 }}</td>
+                        <td>{{ reading.bankingC5 }}</td>
+                        <td>{{ reading.chargesC002 }}</td>
+                        <td>{{ reading.chargesC003 }}</td>
+                        <td>{{ reading.chargesC004 }}</td>
+                        <td>{{ reading.chargesC005 }}</td>
+                        <td>{{ reading.chargesC006 }}</td>
+                        <td>{{ reading.chargesC007 }}</td>
+                        <td>{{ reading.chargesC008 }}</td>
+                        <td>{{ reading.chargesC001 }}</td>
+                        </tr>
+                        {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+            </div>
+            {% endblock %}
+
+{% block custom_js %}
+<script type="text/javascript" src="{% static 'portal/js/showreadings.js' %}"></script>
+{% endblock %}

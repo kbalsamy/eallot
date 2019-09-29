@@ -72,6 +72,7 @@ class GeneratorReadings(models.Model):
     chargesC005 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     chargesC006 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     chargesC007 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
+    chargesC008 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
     chargesC001 = models.DecimalField(max_digits=12, decimal_places=2, blank=True, null=True)
 
     def __str__(self):

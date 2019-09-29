@@ -17,8 +17,9 @@
     <div class="row">
         <div class="col s12">
             <ul class="tabs tabs-fixed-width z-depth-1">
-                <li class="tab col s3"><a class="active" href="#bulk-download">Groupwise Readings</a></li>
-                <li class="tab col s3"><a href="#customized-download">Single Download</a></li>
+                <li class="tab col s3"><a class="active" href="#bulk-download">Search</a></li>
+                <li class="tab col s3"><a href="#customized-download">Generation Statement</a></li>
+                <li class="tab col s3"><a href="#single-download">Service Search</a></li>
             </ul>
         </div>
         <!--                tab for bulk download-->
@@ -64,87 +65,94 @@
             </div>
 
             {% block reading_table %}
-            <div class="card green lighten-4">
-            <table class="bordered highlight" id="summary-table" style="font-size: 12px">
-                <thead>
-                    <tr>
-                        <th rowspan="2">Service Number</th>
-                        <th colspan="5" class="center-align">Net Units</th>
-                        <th colspan="5" class="center-align">Banking Units</th>
-                        <th colspan="7" class="center-align">Charges</th>
-                    </tr>
-                    <tr>
-                        <th>Service Number</th>
-                        <th>C1</th>
-                        <th>C2</th>
-                        <th>C3</th>
-                        <th>C4</th>
-                        <th>C5</th>
-                        <th>C1</th>
-                        <th>C2</th>
-                        <th>C3</th>
-                        <th>C4</th>
-                        <th>C5</th>
-                        <th>C2</th>
-                        <th>C3</th>
-                        <th>C4</th>
-                        <th>C5</th>
-                        <th>C6</th>
-                        <th>C7</th>
-                        <th>C1</th>
-                    </tr>
-                </thead>
-                <tbody>
 
-                </tbody>
-                <tfoot></tfoot>
-            </table>
-            </div>
 
             {% endblock %}
         </div>
         <!--                tab for customized download -->
         <div id="customized-download" class="col s12 single">
             <div class="card orange lighten-4">
-                <form action="#" class="query-tools ">
+                <form action="{% url 'portal:showreadings' %}" class="query-tools" method="GET" id="bulk-form">
                     <div class="input-field">
-                        <input type="text" id='serviceNumber'>
-                        <label for="#serviceNumber">Service Number</label>
-                    </div>
-                    <div class="input-field">
-                        <select name="" id="month">
+                        <select name="month" id="bulk-month">
                             <option value="" selected disabled>Select Month</option>
-                            <option value="january">January</option>
-                            <option value="February">February</option>
-                            <option value="March">March</option>
-                            <option value="April">April</option>
-                            <option value="May">May</option>
-                            <option value="June">June</option>
-                            <option value="July">July</option>
-                            <option value="August">August</option>
-                            <option value="September">September</option>
-                            <option value="October">October</option>
-                            <option value="November">November</option>
-                            <option value="December">December</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="" id="year">
+                        <select name="year" id="bulk-year">
                             <option value="" selected disabled>Select year</option>
                             <option value="2019">2019</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <button class="waves-effect btn" type="submit">Download</button>
+                        <button class="waves-effect btn" type="submit" id="bulk-submit">Download</button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-    <div class="col s12" id="results">
-        <div class="card">
+            {% block bulk_readings %}
+
+            {% endblock %}
 
         </div>
+<!-- single download tab -->
+        <div id="single-download" class="col s12 single">
+            <div class="card orange lighten-4">
+                <form action="{% url 'portal:showreadings' %}" class="query-tools" method="GET" id="bulk-form">
+                    <div class="input-field">
+                        <input type="text" name="consumerID">
+                        <label>Service Number</label>
+                    </div>
+
+                    <div class="input-field">
+                        <select name="month" id="bulk-month">
+                            <option value="" selected disabled>Select Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select name="year" id="bulk-year">
+                            <option value="" selected disabled>Select year</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <button class="waves-effect btn" type="submit" id="bulk-submit">Download</button>
+                    </div>
+                </form>
+            </div>
+            {% block single_readings %}
+
+            {% endblock %}
+
+        </div>
+
+
+    </div>
+
+
         <!--             main-content ends here    -->
     </div>
     <!--    main continer ends here-->

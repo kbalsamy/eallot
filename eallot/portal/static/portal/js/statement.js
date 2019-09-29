@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-
-
     $("#summary-table").DataTable({
         "ordering": false,
         "scrollX": true,
@@ -16,7 +14,6 @@ $(document).ready(function() {
             "buttons": ['print','excelHtml5', 'pdfHtml5']
         }
 
-
     });
 
     $('select').formSelect();
@@ -26,3 +23,8 @@ $(document).ready(function() {
     $(".dataTables_filter").css({ 'display': 'flex', 'justify-content': 'flex-end', 'align-content': 'flex-end' })
 
 });
+
+
+
+
+

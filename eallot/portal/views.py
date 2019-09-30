@@ -1,3 +1,5 @@
+import json
+from datetime import datetime
 from django.shortcuts import render
 from portal.forms import SGForm, AddServicesForm, EDC
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
@@ -6,9 +8,24 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 from portal import api
 from django.db import IntegrityError
-import json
+from django.db.models import Sum
 from django.core.serializers import serialize
+
 # Create your views here.
+
+currentMonth = "0" + str(datetime.now().month - 1)
+currentYear = str(datetime.now().year)
+
+
+def homeView(request):
+
+    C1 = GeneratorReadings.objects.filter(statementMonth=currentMonth, statementYear=currentYear).aggregate(Sum('netUnitsC1'))["netUnitsC1__sum"]
+    C2 = GeneratorReadings.objects.filter(statementMonth=currentMonth, statementYear=currentYear).aggregate(Sum('netUnitsC2'))["netUnitsC2__sum"]
+    C3 = GeneratorReadings.objects.filter(statementMonth=currentMonth, statementYear=currentYear).aggregate(Sum('netUnitsC3'))["netUnitsC3__sum"]
+    C4 = GeneratorReadings.objects.filter(statementMonth=currentMonth, statementYear=currentYear).aggregate(Sum('netUnitsC4'))["netUnitsC4__sum"]
+    C5 = GeneratorReadings.objects.filter(statementMonth=currentMonth, statementYear=currentYear).aggregate(Sum('netUnitsC5'))["netUnitsC5__sum"]
+
+    return render(request, 'portal/index.html', {'c1': C1, 'c2': C2, 'c3': C3, 'c4': C4, 'c5': C5})
 
 
 def router(request):
@@ -127,25 +144,12 @@ def statementFetchView(request):
     return render(request, 'portal/statementreports.html', {'sg_obj': sg_obj, 'readings': readings})
 
 
-# def showAllServicesView(request):
-#     """ This fucntion handles ajax calls. but it is disconnected """
+def showSingleReadings(request):
 
-#     month = request.GET.get('month')
-#     year = request.GET.get('year')
+    month = request.GET.get('month')
+    year = request.GET.get('year')
+    consumerID = request.GET.get('consumerID')
 
-#     reading_querySets = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year)
-#     readings = serialize('json', reading_querySets)
+    query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year, consumerID=consumerID)
 
-#     return HttpResponse(readings, content_type="application/json")
-
-def statementUpdateDB(request):
-
-    month = request.POST.get('month')
-    year = request.POST.get('year')
-
-    query_sets = Service_Grouping.objects.all()
-    consumerList = query_sets.values('serviceNumber', "serviceZone__code")
-    # db calls
-    api.db(month, year, consumerList)
-
-    return HttpResponse("started to check")
+    return render(request, 'portal/showSingleReadings.html', {'readings': query_set})

@@ -23,29 +23,8 @@ $(document).ready(function() {
     $(".dataTables_filter").css({ 'display': 'flex', 'justify-content': 'flex-end', 'align-content': 'flex-end' })
 
 
-    $("#form-update-db").on('submit', function(e){
-
-        e.preventDefault()
-
-        var d = new Date()
-
-        var year = d.getFullYear().toString();
-        var month = "0"+ d.getMonth().toString()
-        var csrf = $("input[name='csrfmiddlewaretoken']").val()
-
-        $.ajax({
-
-            type:'get',
-            url:"statement/database",
-            data: {'month':month, 'year':year, 'csrfmiddlewaretoken':csrf},
-            success:function(data){
-
-                console.log(data)
-            },
 
 
-        });
-    });
 
 });
 

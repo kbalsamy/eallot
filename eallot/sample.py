@@ -1,5 +1,5 @@
-import json
+from datetime import datetime
 
-data = json.loads(open('consumerlist.json').read())
+currentMonth = "0" + str(datetime.now().month - 1)
 
-print(data)
+print (currentMonth)

@@ -8,10 +8,7 @@
 <li><a href="{% url 'portal:statement' %}" class="active-page">Statement </a></li>
 <li><a href="customer.html" class="black-text">Customer</a></li>
 <li><a href="#!" class="black-text">Allotment </a></li>
-<form id="form-update-db" action="" method="post">
-    {% csrf_token %}
-    <li><button class="waves-effect btn" type="submit">update</button></li>
-</form>
+
 
 {% endblock %}
 {% block main_section %}
@@ -114,14 +111,14 @@
 <!-- single download tab -->
         <div id="single-download" class="col s12 single">
             <div class="card orange lighten-4">
-                <form action="{% url 'portal:showreadings' %}" class="query-tools" method="GET" id="bulk-form">
+                <form action="{% url 'portal:showSingleReadings' %}" class="query-tools" method="GET" id="bulk-form">
                     <div class="input-field">
                         <input type="text" name="consumerID">
                         <label>Service Number</label>
                     </div>
 
                     <div class="input-field">
-                        <select name="month" id="bulk-month">
+                        <select name="month" id="single-month">
                             <option value="" selected disabled>Select Month</option>
                             <option value="01">January</option>
                             <option value="02">February</option>
@@ -138,13 +135,13 @@
                         </select>
                     </div>
                     <div class="input-field">
-                        <select name="year" id="bulk-year">
+                        <select name="year" id="single-year">
                             <option value="" selected disabled>Select year</option>
                             <option value="2019">2019</option>
                         </select>
                     </div>
                     <div class="input-field">
-                        <button class="waves-effect btn" type="submit" id="bulk-submit">Download</button>
+                        <button class="waves-effect btn" type="submit" id="single-submit">Download</button>
                     </div>
                 </form>
             </div>

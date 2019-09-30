@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block nav_links %}
+                 <li>
+                     <a href="{% url 'portal:service' %}" class="active-page">Project</a>
+                 </li>
+                 <li><a href="{% url 'portal:statement' %}" class="black-text">Statement </a></li>
+                 <li><a href="customer.html" class="black-text">Customer</a></li>
+                 <li><a href="#!" class="black-text">Allotment </a></li>
+{% endblock %}
+
+{% block main_section %}
+ <div class="col l10 main-content">
+
+            <div class="header center">
+
+                <h5 class="white-text" >Last Month total slots generation</h5>
+
+            </div>
+
+            <div class="show-case">
+
+                <div class="col l2 card-holder orange z-depth-3 center">
+                    <h3>C1</h3>
+                    <p>{{ c1 }}</p>
+                </div>
+                <div class="col l2 card-holder pink z-depth-3 center">
+                    <h3>C2</h3>
+                    <p>{{ c2 }}</p>
+                </div>
+                <div class="col l2 card-holder white z-depth-3 center">
+                    <h3>C3</h3>
+                    <p>{{ c3 }}</p>
+                </div>
+                <div class="col l2 card-holder teal z-depth-3 center">
+                    <h3>C4</h3>
+                    <p>{{ c4 }}</p>
+                </div>
+                <div class="col l2 card-holder green z-depth-3 center">
+                    <h3>C5</h3>
+                    <p>{{ c5 }}</p>
+                </div>
+
+            </div>
+
+            <!--               Generation vs. Allotment graph-->
+
+            <div class="row" style="padding-top: 180px">
+
+                <div class="col l6">
+
+                    <div class="card blue lighten-5">
+                        <canvas id="allot-graph">
+                            <p>Allotment graph</p>
+                        </canvas>
+
+                    </div>
+
+
+                </div>
+
+                <div class="col l6">
+
+                    <div class="card blue lighten-5">
+                        <canvas id="demand-graph">
+                            <p>Demand graph</p>
+                        </canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+{% endblock %}
+
+{% block custom_js %}
+<script type="text/javascript" src="{% static 'portal/js/charts.js' %}"></script>
+
+{% endblock %}

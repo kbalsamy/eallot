@@ -8,6 +8,11 @@
 <li><a href="{% url 'portal:statement' %}" class="active-page">Statement </a></li>
 <li><a href="customer.html" class="black-text">Customer</a></li>
 <li><a href="#!" class="black-text">Allotment </a></li>
+<form id="form-update-db" action="" method="post">
+    {% csrf_token %}
+    <li><button class="waves-effect btn" type="submit">update</button></li>
+</form>
+
 {% endblock %}
 {% block main_section %}
 <div class="col l10 main-content">

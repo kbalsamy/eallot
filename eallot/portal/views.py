@@ -102,17 +102,9 @@ def statementDownloadView(request):
     if month and year:
         # get service numbers from the group
         reading_querySets = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year)
-        if reading_querySets:
-            return render(request, 'portal/showreadings.html', {'readings': reading_querySets, 'sg_obj': sg_obj, 'month': month, 'year': year})
-        else:
-            query_sets = Service_Grouping.objects.all()
-            consumerList = query_sets.values('serviceNumber', "serviceZone__code")
-            # db calls
-            api.db(month, year, consumerList)
-            reading_querySets = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year)
-            return render(request, 'portal/showreadings.html', {'readings': reading_querySets, 'sg_obj': sg_obj, 'month': month, 'year': year})
-    else:
+        return render(request, 'portal/showreadings.html', {'readings': reading_querySets, 'sg_obj': sg_obj, 'month': month, 'year': year})
 
+    else:
         return render(request, 'portal/showreadings.html', {'sg_obj': sg_obj})
 
 
@@ -145,3 +137,15 @@ def statementFetchView(request):
 #     readings = serialize('json', reading_querySets)
 
 #     return HttpResponse(readings, content_type="application/json")
+
+def statementUpdateDB(request):
+
+    month = request.POST.get('month')
+    year = request.POST.get('year')
+
+    query_sets = Service_Grouping.objects.all()
+    consumerList = query_sets.values('serviceNumber', "serviceZone__code")
+    # db calls
+    api.db(month, year, consumerList)
+
+    return HttpResponse("started to check")

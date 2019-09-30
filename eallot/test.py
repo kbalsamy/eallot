@@ -8,8 +8,6 @@ GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatem
 READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatement/{}"
 
 
-
-
 def checkCharges(charges):
 
     results = []
@@ -135,4 +133,4 @@ def db(month, year, consumerList):
                 print(failed)
 
 
-check = db('02', '2019', [{'serviceNumber': '059224760111', 'serviceZone__code': '476'}])
+# check = db('09', '2019', consumerList)

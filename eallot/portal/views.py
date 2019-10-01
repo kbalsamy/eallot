@@ -13,7 +13,7 @@ from django.core.serializers import serialize
 
 # Create your views here.
 
-currentMonth = "0" + str(datetime.now().month - 2)
+currentMonth = "0" + str(datetime.now().month - 1)
 currentYear = str(datetime.now().year)
 
 

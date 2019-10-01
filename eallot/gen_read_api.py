@@ -102,7 +102,7 @@ def main(month, year, consumerList):
     for consumer in consumerList:
         edc = consumer['serviceZone__code']
         n = consumer['serviceNumber']
-        print('fetchinf for {}'.format(n))
+        print('fetching for {}'.format(n))
         login_data = build_login_payload(n, API_PASSWORD)
         gen_data = build_gen_payload(edc, n, month, year)
         results = get_reading(login_data=login_data, gen_data=gen_data)

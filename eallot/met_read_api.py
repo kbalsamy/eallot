@@ -7,47 +7,33 @@ import os
 API_PASSWORD = os.environ.get('password')
 LOGIN_URL = "http://htoa.tnebnet.org/oa-auth-service//tokens/login"
 GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatements?"
-READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatement/{}"
+READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/meterreading/{}"
+METER_READING_URL = "http://htoa.tnebnet.org/oa-service//transaction/meterreadings?"
 
 
-def checkCharges(charges):
+def cleanup(results):
 
-    results = []
+    data_bin = []
 
-    charges_dict = {}
+    reading_id = results['id']
+    serviceNumber = results['companyServiceNumber']
+    month = results['readingMonthCode']
+    year = results['readingYear']
 
-    for charge in charges:
+    for i in [reading_id, serviceNumber, month, year]:
+        data_bin.append(i)
 
-        charges_dict.update({charge['chargeCode']: charge['totalCharges']})
+    monthly_reading = results['meterReadingSlot']
 
-    results.append(charges_dict)
-    return results
+    for reading in monthly_reading:
 
+        impUnits = int(reading['impUnits'])
+        expUnits = int(reading['expUnits'])
+        netUnits = expUnits - impUnits
 
-# data cleanup helper functions
+        data_bin.append(netUnits)
 
-
-def cleanup(data):
-
-    slots_read = []
-
-    slots_read.append(data['id'])
-    slots_read.append(data['dispCompanyServiceNumber'])
-    slots_read.append(data['statementMonth'])
-    slots_read.append(data['statementYear'])
-    slots_read.append(data['dispCompanyName'])
-    charges = data['generationStatementCharges']
-    slots = data['generationStatementSlots']
-
-    read_req = ['impUnits', 'expUnits', 'netUnits', 'bankedBalance']
-
-    for val in read_req:
-        for s in slots:
-            slots_read.append(s[val])
-
-    final_charges = checkCharges(charges)
-    slots_read += final_charges
-    return slots_read
+    return data_bin
 
 
 def make_request(method, url, headers, payload=None):
@@ -73,11 +59,11 @@ def get_reading(login_data=None, gen_data=None):
     get_auth = make_request('post', LOGIN_URL, headers, payload=login_data)
     token = get_auth['token']
     headers.update({'Authorization': token})
-    get_genrep_id = make_request('get', GEN_STATEMENT_URL, headers, payload=gen_data)
-    if get_genrep_id:
-        report_id = get_genrep_id[0]['id']
-        reading = make_request('get', READINGS_URL.format(report_id), headers)
-        return reading
+    meter_readings = make_request('get', METER_READING_URL, headers, payload=gen_data)
+    if meter_readings:
+        reading_id = meter_readings[0]['id']
+        get_reading = make_request('get', READINGS_URL.format(reading_id), headers)
+        return get_reading
 
 
 def build_login_payload(serviceNumber, password):
@@ -89,8 +75,8 @@ def build_login_payload(serviceNumber, password):
 
 def build_gen_payload(edc, serviceNumber, month, year):
 
-    payload = {'dummy': '1', 'edc-id': edc, 'service-number': serviceNumber, "statement-month": month,
-               'statement-year': year}
+    payload = {'dummy': '1', 'company-service-number': serviceNumber, 'org-id': edc, "month": month,
+               'year': year}
 
     return payload
 
@@ -109,18 +95,20 @@ def main(month, year, consumerList):
         if results:
             data = cleanup(results)
             data_bin.append(data)
-            return data_bin
+
+    return data_bin
 
 
 def db(month, year, consumerList):
-    tablename = 'portal_generatorreadings'
+    tablename = 'portal_meterreadings'
     con = sqlite3.connect('db.sqlite3')
     cursor = con.cursor()
     data = main(month, year, consumerList)
     if data:
         for i in data:
+            print(i)
             try:
-                insert_values = cursor.execute("""INSERT INTO portal_generatorreadings (genstatementID, consumerID, statementMonth, statementYear,companyName,impUnitsC1,impUnitsC2, impUnitsC3, impUnitsC4,impUnitsC5, expUnitsC1, expUnitsC2,expUnitsC3, expUnitsC4, expUnitsC5,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5,bankingC1, bankingC2, bankingC3, bankingC4, bankingC5, chargesC002, chargesC003, chargesC004, chargesC005, chargesC006, chargesC007, chargesC008,chargesC001) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14], i[15], i[16], i[17], i[18], i[19], i[20], i[21], i[22], i[23], i[24], i[25].get('C002', 0.0), i[25].get('C003', 0.0), i[25].get('C004', 0.0), i[25].get('C005', 0.0), i[25].get('C006', 0.0), i[25].get('C007', 0.0), i[25].get('C008', 0.0), i[25].get('C001', 0.0)))
+                insert_values = cursor.execute("""INSERT INTO portal_meterreadings (readingID, serviceNumber, month, year,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5) values (?,?,?,?,?,?,?,?,?)""", (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]))
                 con.commit()
                 print('saved')
             except sqlite3.IntegrityError as e:
@@ -136,4 +124,4 @@ currentYear = str(datetime.now().year)
 month = "0" + str(currentMonth)
 
 
-schedule = db(month, currentYear, consumerList)
+schedule = db('09', currentYear, consumerList)

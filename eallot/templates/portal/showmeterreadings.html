@@ -1,0 +1,46 @@
+{% extends 'portal/meterreadings.html' %}
+{% load static %}
+{% block meter_table  %}
+
+
+            <div class="card">
+                {% if month and year %}
+                <p class="center-align">Generator statement for {{ month }} / {{ year }}</p>
+                {% endif %}
+            </div>
+
+            <div class="card green lighten-4">
+
+            <table class="bordered highlight" id="meter-table-readings" style="font-size: 12px">
+                <thead>
+                    <tr>
+                        <th rowspan="2">Service Number</th>
+                        <th colspan="5" class="center-align">Net Units</th>
+
+                    </tr>
+                    <tr>
+                        <th>C1</th>
+                        <th>C2</th>
+                        <th>C3</th>
+                        <th>C4</th>
+                        <th>C5</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {%  for reading in readings %}
+                <tr>
+                        <td>{{ reading.serviceNumber }}</td>
+                        <td>{{ reading.netUnitsC1 }}</td>
+                        <td>{{ reading.netUnitsC2 }}</td>
+                        <td>{{ reading.netUnitsC3 }}</td>
+                        <td>{{ reading.netUnitsC4 }}</td>
+                        <td>{{ reading.netUnitsC5 }}</td>
+
+                        </tr>
+                        {% endfor %}
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+            </div>
+            {% endblock %}

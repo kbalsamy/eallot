@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block nav_links %}
+<li>
+    <a href="{% url 'portal:service' %}" class="black-text">Project</a>
+</li>
+<li><a href="{% url 'portal:statement' %}" class="black-text">Statement </a></li>
+<li><a href="{% url 'portal:meter' %}" class="active-page">Meter Reading</a></li>
+<li><a href="#!" class="black-text">Allotment </a></li>
+
+
+{% endblock %}
+{% block main_section %}
+<div class="col l10 main-content">
+    <div class="header-project center">
+        <h5 class="white-text">Meter Reading Download</h5>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs tabs-fixed-width z-depth-1">
+                <li class="tab col s3"><a class="active" href="#meter-search">Search</a></li>
+
+            </ul>
+        </div>
+        <!--                tab for bulk download-->
+        <div id="bulk-download" class="col s12 bulk">
+            <div class="card orange lighten-4">
+                <form id="bulk-query" method="GET" action="{% url 'portal:meterreading' %}" class="query-tools">
+                    <div class="input-field">
+                        <select id="month" name="month">
+                            <option value="" selected disabled>Select Month</option>
+                            <option value="01">January</option>
+                            <option value="02">February</option>
+                            <option value="03">March</option>
+                            <option value="04">April</option>
+                            <option value="05">May</option>
+                            <option value="06">June</option>
+                            <option value="07">July</option>
+                            <option value="08">August</option>
+                            <option value="09">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <select id="year" name="year">
+                            <option value="" selected disabled>Select year</option>
+                            <option value="2019">2019</option>
+                        </select>
+                    </div>
+                    <div class="input-field">
+                        <button class="waves-effect btn" type="submit">Display</button>
+                    </div>
+                </form>
+            </div>
+            {% block meter_table %}
+
+
+            {% endblock %}
+        </div>
+
+
+        <!--             main-content ends here    -->
+    </div>
+    <!--    main continer ends here-->
+</div>
+{% endblock %}
+{% block custom_js %}
+<script type="text/javascript" src="{% static 'portal/js/meterreading.js' %}"></script>
+{% endblock %}

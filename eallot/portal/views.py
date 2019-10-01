@@ -3,7 +3,7 @@ from datetime import datetime
 from django.shortcuts import render
 from portal.forms import SGForm, AddServicesForm, EDC
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
-from portal.models import Service, Service_Grouping, GeneratorReadings
+from portal.models import Service, Service_Grouping, GeneratorReadings, meterReadings
 from django.shortcuts import get_object_or_404
 from django.core import serializers
 from portal import api
@@ -13,7 +13,7 @@ from django.core.serializers import serialize
 
 # Create your views here.
 
-currentMonth = "0" + str(datetime.now().month - 1)
+currentMonth = "0" + str(datetime.now().month - 2)
 currentYear = str(datetime.now().year)
 
 
@@ -153,3 +153,18 @@ def showSingleReadings(request):
     query_set = GeneratorReadings.objects.filter(statementMonth=month, statementYear=year, consumerID=consumerID)
 
     return render(request, 'portal/showSingleReadings.html', {'readings': query_set})
+
+
+def meterReadingView(request):
+
+    return render(request, 'portal/meterreadings.html')
+
+
+def meterReadingShowView(request):
+
+    month = request.GET.get('month')
+    year = request.GET.get('year')
+
+    query_set = meterReadings.objects.filter(month=month, year=year)
+
+    return render(request, 'portal/showmeterreadings.html', {'readings': query_set, 'month': month, 'year': year})

@@ -1,5 +1,3 @@
-from datetime import datetime
+import os
 
-currentMonth = "0" + str(datetime.now().month - 1)
-
-print (currentMonth)
+print(os.environ.get('password'))

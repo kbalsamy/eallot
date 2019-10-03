@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 import os
 
-API_PASSWORD = os.environ.get('password')
+API_PASSWORD = "niSMJC6TMwZWk8qqMR6R9g=="
 LOGIN_URL = "http://htoa.tnebnet.org/oa-auth-service//tokens/login"
 GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatements?"
 READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/meterreading/{}"
@@ -57,7 +57,16 @@ def get_reading(login_data=None, gen_data=None):
     headers = {"Accept": "application/json", "Content-Type": "application/json",
                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0"}
     get_auth = make_request('post', LOGIN_URL, headers, payload=login_data)
-    token = get_auth['token']
+    try:
+        token = get_auth['token']
+    except:
+        token = None
+
+    while token == None:
+        get_auth = make_request('post', LOGIN_URL, headers, payload=login_data)
+        token = get_auth['token']
+        print("getting access token")
+
     headers.update({'Authorization': token})
     meter_readings = make_request('get', METER_READING_URL, headers, payload=gen_data)
     if meter_readings:
@@ -95,6 +104,10 @@ def main(month, year, consumerList):
         if results:
             data = cleanup(results)
             data_bin.append(data)
+        else:
+            empty_list = []
+            empty_list.append(n)
+            data_bin.append(empty_list)
 
     return data_bin
 
@@ -106,15 +119,23 @@ def db(month, year, consumerList):
     data = main(month, year, consumerList)
     if data:
         for i in data:
-            print(i)
-            try:
-                insert_values = cursor.execute("""INSERT INTO portal_meterreadings (readingID, serviceNumber, month, year,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5) values (?,?,?,?,?,?,?,?,?)""", (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]))
-                con.commit()
-                print('saved')
-            except sqlite3.IntegrityError as e:
-                print("Already exists")
+            if len(i) > 2:
+                try:
+                    insert_values = cursor.execute("""INSERT INTO portal_meterreadings (readingID, serviceNumber, month, year,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5) values (?,?,?,?,?,?,?,?,?)""", (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8]))
+                    con.commit()
+                    print('saved')
+                except sqlite3.IntegrityError as e:
+                    print("Already exists")
+            else:
+
+                date = datetime.now()
+                with open('readingsummary.txt', 'a') as f:
+                    f.write('{}: reading are not updated for {} \n' .format(datetime.strftime(date, "%d/%m/%y- %H:%M:%S"), i[0]))
+                    f.close()
+                print("readings are not updated for {}".format(i[0]))
+
     else:
-        print('statement not uploaded')
+        print('readings not available')
 
 
 data = json.loads(open('consumerList.json').read())
@@ -124,4 +145,4 @@ currentYear = str(datetime.now().year)
 month = "0" + str(currentMonth)
 
 
-schedule = db('07', currentYear, consumerList)
+schedule = db("09", currentYear, consumerList)

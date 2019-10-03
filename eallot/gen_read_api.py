@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 import os
 
-API_PASSWORD = os.environ.get('password')
+API_PASSWORD = "niSMJC6TMwZWk8qqMR6R9g=="
 LOGIN_URL = "http://htoa.tnebnet.org/oa-auth-service//tokens/login"
 GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatements?"
 READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatement/{}"
@@ -71,7 +71,16 @@ def get_reading(login_data=None, gen_data=None):
     headers = {"Accept": "application/json", "Content-Type": "application/json",
                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0"}
     get_auth = make_request('post', LOGIN_URL, headers, payload=login_data)
-    token = get_auth['token']
+    try:
+        token = get_auth['token']
+    except:
+        token = None
+
+    while token == None:
+        get_auth = make_request('post', LOGIN_URL, headers, payload=login_data)
+        token = get_auth['token']
+        print("getting access token")
+
     headers.update({'Authorization': token})
     get_genrep_id = make_request('get', GEN_STATEMENT_URL, headers, payload=gen_data)
     if get_genrep_id:
@@ -97,9 +106,13 @@ def build_gen_payload(edc, serviceNumber, month, year):
 
 def main(month, year, consumerList):
 
-    data_bin = []
+    tablename = 'portal_generatorreadings'
+    con = sqlite3.connect('db.sqlite3')
+    cursor = con.cursor()
+    # data_bin = []
 
     for consumer in consumerList:
+
         edc = consumer['serviceZone__code']
         n = consumer['serviceNumber']
         print('fetching for {}'.format(n))
@@ -108,32 +121,34 @@ def main(month, year, consumerList):
         results = get_reading(login_data=login_data, gen_data=gen_data)
         if results:
             data = cleanup(results)
-            data_bin.append(data)
-            return data_bin
+            try:
+                insert_values = cursor.execute("""INSERT INTO portal_generatorreadings (genstatementID, consumerID, statementMonth, statementYear,companyName,impUnitsC1,impUnitsC2, impUnitsC3, impUnitsC4,impUnitsC5, expUnitsC1, expUnitsC2,expUnitsC3, expUnitsC4, expUnitsC5,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5,bankingC1, bankingC2, bankingC3, bankingC4, bankingC5, chargesC002, chargesC003, chargesC004, chargesC005, chargesC006, chargesC007, chargesC008,chargesC001) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12], data[13], data[14], data[15], data[16], data[17], data[18], data[19], data[20], data[21], data[22], data[23], data[24], data[25].get('C002', 0.0), data[25].get('C003', 0.0), data[25].get('C004', 0.0), data[25].get('C005', 0.0), data[25].get('C006', 0.0), data[25].get('C007', 0.0), data[25].get('C008', 0.0), data[25].get('C001', 0.0)))
+
+                con.commit()
+                print('saved')
+
+            except sqlite3.IntegrityError as e:
+                print("Already exists")
+            # data_bin.append(data)
+
+        else:
+            date = datetime.now()
+            with open('summary.txt', 'a') as f:
+                f.write('{}: reading are not updated for {} \n' .format(datetime.strftime(date, "%d/%m/%y- %H:%M:%S"), n))
+                f.close()
+            print("readings are not updated for {}".format(n))
 
 
 def db(month, year, consumerList):
-    tablename = 'portal_generatorreadings'
-    con = sqlite3.connect('db.sqlite3')
-    cursor = con.cursor()
+
     data = main(month, year, consumerList)
-    if data:
-        for i in data:
-            try:
-                insert_values = cursor.execute("""INSERT INTO portal_generatorreadings (genstatementID, consumerID, statementMonth, statementYear,companyName,impUnitsC1,impUnitsC2, impUnitsC3, impUnitsC4,impUnitsC5, expUnitsC1, expUnitsC2,expUnitsC3, expUnitsC4, expUnitsC5,netUnitsC1, netUnitsC2, netUnitsC3, netUnitsC4, netUnitsC5,bankingC1, bankingC2, bankingC3, bankingC4, bankingC5, chargesC002, chargesC003, chargesC004, chargesC005, chargesC006, chargesC007, chargesC008,chargesC001) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""", (i[0], i[1], i[2], i[3], i[4], i[5], i[6], i[7], i[8], i[9], i[10], i[11], i[12], i[13], i[14], i[15], i[16], i[17], i[18], i[19], i[20], i[21], i[22], i[23], i[24], i[25].get('C002', 0.0), i[25].get('C003', 0.0), i[25].get('C004', 0.0), i[25].get('C005', 0.0), i[25].get('C006', 0.0), i[25].get('C007', 0.0), i[25].get('C008', 0.0), i[25].get('C001', 0.0)))
-                con.commit()
-                print('saved')
-            except sqlite3.IntegrityError as e:
-                print("Already exists")
-    else:
-        print('statement not uploaded')
 
 
 data = json.loads(open('consumerList.json').read())
 consumerList = json.loads(data, encoding='utf-8')
 currentMonth = datetime.now().month
 currentYear = str(datetime.now().year)
-month = "0" + str(currentMonth)
+month = str(currentMonth)
 
 
-schedule = db(month, currentYear, consumerList)
+schedule = db("09", currentYear, consumerList)

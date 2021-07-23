@@ -4,7 +4,7 @@ import sqlite3
 from datetime import datetime
 import os
 
-API_PASSWORD = "niSMJC6TMwZWk8qqMR6R9g=="
+API_PASSWORD = ""
 LOGIN_URL = "http://htoa.tnebnet.org/oa-auth-service//tokens/login"
 GEN_STATEMENT_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatements?"
 READINGS_URL = "http://htoa.tnebnet.org/oa-service//api/gs/generationstatement/{}"
